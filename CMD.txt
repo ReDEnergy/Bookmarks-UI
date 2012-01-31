@@ -1,8 +1,0 @@
-cfx run -b %_f% -p %_p%
-
-
-set _f="D:\Program Files (x86)\Mozilla Firefox\firefox.exe"
-
-
-set _p="G:Programs\Only Configure & Run\Firefox\Develop"
-
