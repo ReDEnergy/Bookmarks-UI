@@ -36,7 +36,7 @@ function Element(Mark) {
 }
 
 
-self.port.on("Gen2", function (marks) {
+self.port.on("generate", function (marks) {
 	_B.html('');
 	
 	for (var i in marks) {
