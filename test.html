@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8>
+<meta name="viewport" content="width=620">
+<title>HTML5 Demo: File API (simple)</title>
+</head>
+<body>
+<article>
+	<input id="file" type="file">
+	<div id="preview" style="width:300px; height:100px; background-size:auto 100px;"></div>
+</article>
+<script>
+var upload = document.getElementById('file');
+var preview = document.getElementById('preview');
+
+upload.onchange = function (e) {
+	e.preventDefault();
+	var file = upload.files[0];
+	if ( file.type.slice(0,5) == 'image' ) {
+		var reader = new FileReader();
+		reader.onload = function (event) {
+			preview.style.background ='url('+event.target.result+')';
+		};
+		reader.readAsDataURL(file);
+	}
+	return false;
+};
+</script>
+</body>
+</html>
