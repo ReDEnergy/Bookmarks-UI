@@ -13,12 +13,6 @@
 			"title": "Enable Bookmark UI opening",
 			"type": "bool",
 			"value": true
-		},
-		{
-			"type": "integer",
-			"name": "intPreference",
-			"value": 42,
-			"title": "Integer Pref" 
 		}
 	]
 }

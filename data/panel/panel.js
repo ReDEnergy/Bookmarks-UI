@@ -53,6 +53,7 @@ $('.folder').live('click', function (){
 	_parent = $(this).attr('parent');
 	_path.push($(this).children('.text').html());
 	$('.path').html($(this).children('.text').html());
+	$('.back').toggle(true);
 });
  
 $('.link').live('mousedown', function (e){
@@ -69,6 +70,9 @@ $('.back').click( function(){
 		$('.path').html(_path[_path.length-1]);
 		self.port.emit("GoBack", _parent);
 	}
+	
+	if (_path.length == 1)
+		$('.back').toggle(false);
 });
  
 

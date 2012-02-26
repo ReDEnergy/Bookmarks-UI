@@ -46,10 +46,11 @@ body {
 	width:40px;
 	height:inherit;
 	float:left;
+	position:absolute;
+	top:0px;
 	background:url(../images/back.png) no-repeat top;
-	position:relative;
-	top:-30px;
-	border-right:1px solid #CCC;
+	border-right:1px solid rgba(255,255,255,0.7);
+	display:none;
 }
 
 #ceva {
@@ -69,6 +70,7 @@ body {
  *****************/
 #f3 {
 	width:100%;
+	margin:20px 0 0 0;
 	padding:0 20px 0 10px;
 	float:left;
 	overflow-x: hidden; 
