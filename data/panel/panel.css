@@ -20,7 +20,7 @@ body {
 
 #info {
 	width:100%;
-	height:28px;
+	height:30px;
 	margin:0 auto;
 	color:#FFF;
 	font-family:"Segoe UI", Arial, Helvetica, sans-serif;
@@ -30,24 +30,36 @@ body {
 }
 
 #info .path {
-	width:80%;
+	width:100%;
 	height:20px;
-	padding:4px 10%;
+	padding:5px 0;
 	text-align:center;
 	overflow:hidden;
+}
+
+#info .path:hover {
+	text-shadow:0 0 5px #06F;
+	cursor:pointer;
 }
 
 #info .back {
 	width:40px;
 	height:inherit;
-	float:right;
-	background:url(../images/back.ico) no-repeat center;
+	float:left;
+	background:url(../images/back.png) no-repeat top;
 	position:relative;
-	top:-28px;
+	top:-30px;
 }
 
+#ceva {
+	width:5px;
+	height:100px;
+	left:0;
+}
+
+
 #info .back:hover{
-	background:url(../images/back_hover.ico) no-repeat center;
+	background-position:bottom;
 	cursor:pointer;
 }
 

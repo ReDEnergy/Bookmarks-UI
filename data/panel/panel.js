@@ -3,7 +3,7 @@ var _typeof = [, 'link', 'folder', 'separator'];
 var level = 1;
 var _B = $('#f3');
 var _parent = null;
-var _path = ['Marks'];
+var _path = ['Bookmarks Toolbar'];
 
 /**************************************************************************************************************
  **************************************************************************************************************/
@@ -55,8 +55,12 @@ $('.folder').live('click', function (){
 	$('.path').html($(this).children('.text').html());
 });
  
-$('.link').live('click', function (){
-	self.port.emit("OpenThis", $(this).attr('url'));
+$('.link').live('mousedown', function (e){
+	self.port.emit("OpenLink", $(this).attr('url') , e.button);
+});
+
+$('.path').live('click', function () {
+	self.port.emit("OpenAll");
 });
  
 $('.back').click( function(){
