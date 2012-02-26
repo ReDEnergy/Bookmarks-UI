@@ -49,6 +49,7 @@ body {
 	background:url(../images/back.png) no-repeat top;
 	position:relative;
 	top:-30px;
+	border-right:1px solid #CCC;
 }
 
 #ceva {
