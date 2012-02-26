@@ -3,14 +3,22 @@
     "name": "uimark",
     "fullName": "Bookmarks UI", 
     "license": "MPL 1.1/GPL 2.0/LGPL 2.1", 
-    "version": "1.2", 
+    "version": "1.3", 
     "author": "Ivanica Gabriel",
     "description": "Now you can acces your favorite bookmarks easy and fast from Bookmark UI.\nGive your browser a cleaner look and hide the bookmark toolbar.\nUse Bookmark UI whenever you want to access you're favorite Bookmarks.\n\nDefault : Press CTRL + Q to show/hide the panel.\nClick on the left edge of the webpage to show the Bookmark panel when you need it (best for fullscreen mode).\nTo open the bookmark in new tab click it.\n",
     "homepage": "http://ceata.org/proiecte/bookmark-toolbar",
-	"preferences": [{
-		"name": "edgeopen",
-		"title": "Show Bookmark UI button",
-		"type": "string",
-		"value": "1"
-    }]
+	"preferences": [
+		{
+			"name": "edgeopen",
+			"title": "Enable Bookmark UI opening",
+			"type": "bool",
+			"value": true
+		},
+		{
+			"type": "integer",
+			"name": "intPreference",
+			"value": 42,
+			"title": "Integer Pref" 
+		}
+	]
 }
