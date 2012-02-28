@@ -2,7 +2,7 @@
 var _typeof = [, 'link', 'folder', 'separator'];
 var level = 1;
 var _B = $('#f3');
-var _parent = null;
+var _parent = [];
 var _path = ['Bookmarks Toolbar'];
 
 /**************************************************************************************************************
@@ -44,13 +44,15 @@ self.port.on("generate", function (marks) {
 		var elem = Element(marks[i]);
 		_B.append(elem);	
 	}
-	
 });
 
+/**
+ **	Navigation buttons - GUI
+ **/
  
 $('.folder').live('click', function (){
 	self.port.emit("GetNew", $(this).attr('cid'));
-	_parent = $(this).attr('parent');
+	_parent.push($(this).attr('parent'));
 	_path.push($(this).children('.text').html());
 	$('.path').html($(this).children('.text').html());
 	$('.back').toggle(true);
@@ -60,15 +62,16 @@ $('.link').live('mousedown', function (e){
 	self.port.emit("OpenLink", $(this).attr('url') , e.button);
 });
 
-$('.path').live('click', function () {
-	self.port.emit("OpenAll");
+$('.path').live('mousedown', function (e) {
+	if(e.button > 0)
+		self.port.emit("OpenAll");
 });
  
 $('.back').click( function(){
 	if (_path.length > 1) {
 		_path.pop();
 		$('.path').html(_path[_path.length-1]);
-		self.port.emit("GoBack", _parent);
+		self.port.emit("GoBack", _parent.pop());
 	}
 	
 	if (_path.length == 1)
@@ -76,8 +79,8 @@ $('.back').click( function(){
 });
  
 
- /**************************************************************************************************************
- **************************************************************************************************************/
+/**************************************************************************************************************
+**************************************************************************************************************/
 
 // *	Panel Settings
 $('.button').click( function() {	
