@@ -1,97 +1,86 @@
 // JavaScript Document
 
-// *	Object for storing user settings
-function settings () {
-	this.width = null;
-	this.height = null;
-	this.combo = null;
-	this.image = null;
-	this.opacity = null;
-	this.theme = null;
+// *	Store User Settings - Save
+var Pref = {
+	width:	300,
+	height:	400,
+	combo:	['Q', 1, 0, 0],
+	image:	0,
+	mouse:	[0, 1, 1],
 }
 
-// *	Object for getting user settings from the page
-var get_settings = {
+// *	Get User Settings From The Page
+var Settings = {
 	width : function () {
-		return parseInt( $('.value').first().html() )
+		Pref.width = parseInt( $('.value').first().html() )
 	},
 	height : function () {
-		return parseInt( $('.value').last().html() );
+		Pref.height = parseInt( $('.value').last().html() );
 	},
-	combo : function (callback) {
-		var combo = $('.key').html();
-		$('.hkey').each(function(index, element) {
-			if ($(this).hasClass('hkey_in_use')) 
-				combo += '1';
-			else
-				combo += '0';
+	combo : function () {
+		Pref.combo.splice(1,3,0,0,0);
+		Pref.combo[0] = String($('.key').html());
+		$('.hkey').each( function ( i, element) {
+			if ($(this).hasClass('hkey_in_use'))
+				Pref.combo[i+1] = 1;
 		});
-		callback (combo);
 	},
-	opacity : function () {
-		return parseInt( $('.opacity').html() );
+	mouse : function () {
+		Pref.mouse[0] = $('#leftclick').val()
+		Pref.mouse[1] = $('#middleclick').val()
+		Pref.mouse[2] = $('#rightclick').val()
 	},
+	
 	image : function () {
-		return $('.preview').attr('image');
+		Pref.image = $('.preview').attr('image');
 	},
-	theme : function () {
-		if ( $('#white').attr('checked') )
-			return 1;
-		else return 2;
+	get : function () {
+		this.width();
+		this.height();
+		this.mouse();
+		this.image();
+		this.combo();
+	},
+	send : function () {
+		self.port.emit("apply", Pref );
 	}
 }
 
-// *	Get Settings
-var save = new settings;
-
 $('#apply').click ( function () {
-	$.when().done(save_settings).done(send_settings);
+	$.when().done(Settings.get(), Settings.send());
 });
 
-function save_settings() {
-//	console.log ("Saving settings");
-	save.width = get_settings.width();
-	save.height = get_settings.height();
-	get_settings.combo(	function(x) {
-		save.combo = x;
-	});
-	save.image = get_settings.image();
-	save.opacity = get_settings.opacity();
-	save.theme = get_settings.theme();
-}
-
-function send_settings() {
-//	console.log ("Sending settings");
-	self.port.emit("apply", save );
-}
-
-// *	Get user settings and overwrite those from the page
-self.port.on ('current_settings', function ( settings ){
+// *	Get user prefereces and overwrite those from the page
+self.port.on ('CurrentPref', function ( Pref ){
 	// *	Set current dimensions
-	$('.value').first().html( settings.width );
-	$('.value').last().html( settings.height );
-	$('.currentdim').html ( settings.width + " width * "+ settings.height + " height");
+	$('.value').first().html( Pref.width );
+	$('.value').last().html( Pref.height );
+	$('.currentdim').html ( Pref.width + " width * "+ Pref.height + " height");
 	
 	// *	Show current key ( classes color )
-	$('.key').html( settings.combo[0]);
+	$('.key').html( Pref.combo[0]);
 	var first = $('.hkey').first();	
 	for ( i=1; i<=3; i++ ) {
-		if ( settings.combo[i] == '1')
+		if ( Pref.combo[i] == '1')
 			first.toggleClass('hkey_in_use',true);
 		first = first.next();
 	}
 	
 	// *	Store current binar val
-	var val = parseInt( settings.combo[1]) + 2 * parseInt(settings.combo[2]) + 4 * parseInt(settings.combo[3]);
+	var val = parseInt( Pref.combo[1]) + 2 * parseInt(Pref.combo[2]) + 4 * parseInt(Pref.combo[3]);
 	$('#info').html(val);
 	
 	// *	Show current hotkey
 	var currentkey='';
 	var keys = ['Ctrl+','Shift+','Alt+'];
 	for (i=1; i<=3; i++)
-		if (settings.combo[i] == '1')
+		if (Pref.combo[i] == '1')
 			currentkey += keys[i-1];
-	currentkey += settings.combo[0];		
+	currentkey += Pref.combo[0];		
 	$('.currentkey').html('Current hotkey: ' + currentkey);
 	
+	// *	Mouse actions
+	$('#leftclick').val(Pref.mouse[0]);	
+	$('#middleclick').val(Pref.mouse[1]);	
+	$('#rightclick').val(Pref.mouse[2]);
 });

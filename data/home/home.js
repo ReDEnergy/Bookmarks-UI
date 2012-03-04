@@ -68,12 +68,12 @@ $(document).ready( function () {
 	}
 
 // *	Default
-	$(".resetpanel").click( function () {
+	$("#resetpanel").click( function () {
 		$('.value').first().html('300'); 
 		$('.value').last().html('400'); 
 	});
 	
-	$('.resetkeys').click( function () {
+	$('#resetkeys').click( function () {
 		$('.key').html('Q');
 		$('.hkey').toggleClass('hkey_in_use',false);
 		$('.hkey').first().toggleClass('hkey_in_use',true);
@@ -82,10 +82,21 @@ $(document).ready( function () {
 		$('#info').html('1');
 		newset();
 	});
+	
+	$('#resetmouse').click( function () {
+		$('#leftclick').val(0);
+		$('#middleclick').val(1);
+		$('#rightclick').val(1);
+	});
+
+	$('#resetbackground').click( function () {
+		$('.preview').css('background','url(../images/background.jpg) center no-repeat');
+		$('.preview').attr('image', 0);
+	});
 
 // *	Personalize your panel
 	var upload = document.getElementById('browse');
-	$('.open').click( function () {
+	$('.preview').click( function () {
 		$('#browse').click();
 	});
 	upload.onchange = function (e) {
@@ -104,20 +115,7 @@ $(document).ready( function () {
 		return false;
 	};
 
-// *	Set the transparency	
-	$('.tminus').click( function(e) {
-		var val = parseInt( $(this).next().html() );
-		if (val >= 10 )
-			$(this).next().html(val - 10 + " %");
-	});
-	
-	$('.tplus').click( function() {
-		var val = parseInt( $(this).prev().html() );
-		if (val <= 90 )
-			$(this).prev().html(val + 10 + " %");
-	});
-
-// *	Apply buttons	
+// *	Apply	
 	$('#apply').click( function () {
 		if ($('.change').hasClass("hkey_in_use") == true ) {
 			$('.change').toggleClass("hkey_in_use",false);
@@ -125,5 +123,4 @@ $(document).ready( function () {
 		}
 		$('.currentdim').html( $('.value').first().html() +" width * "+  $('.value').last().html() + " height");
 	});
-
 });

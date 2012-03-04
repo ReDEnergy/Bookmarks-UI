@@ -1,19 +1,19 @@
 // *	Bookmarks rows
-var _typeof = [, 'link', 'folder', 'separator'];
-var level = 1;
-var _B = $('#f3');
-var _parent = [];
-var _path = ['Bookmarks Toolbar'];
+var Bookmark = {
+	typeof	:	[, 'link', 'folder', 'separator'],
+	root	:	$('#f3'),
+	parent	:	[],
+	path	:	['Bookmarks Toolbar']
+}
 
 /**************************************************************************************************************
  **************************************************************************************************************/
 
 function Element(Mark) {
 	var x = $('<div></div>');
-	var type = _typeof[Mark.type];
 	
 	if (Mark.type != 3 ) {
-		var fav = $('<div class="favicon"></div>');
+		var fav = $('<div class="fav"></div>');
 		if (Mark.type == 1) {
 			if (Mark.fav == null)
 				fav.css('background-image','url(../images/fav.png)');
@@ -28,7 +28,7 @@ function Element(Mark) {
 
 	}
 	
-	x.addClass(type);
+	x.addClass(Bookmark.typeof[Mark.type]);
 	x.attr('cid', Mark.id);
 	x.attr('parent', Mark.parent);
 	x.attr('url', Mark.url);
@@ -37,12 +37,11 @@ function Element(Mark) {
 
 
 self.port.on("generate", function (marks) {
-	_B.html('');
-	
+	Bookmark.root.html('');
 	for (var i in marks) {
 		if (marks[i].type != 3)
 		var elem = Element(marks[i]);
-		_B.append(elem);	
+		Bookmark.root.append(elem);	
 	}
 });
 
@@ -52,8 +51,8 @@ self.port.on("generate", function (marks) {
  
 $('.folder').live('click', function (){
 	self.port.emit("GetNew", $(this).attr('cid'));
-	_parent.push($(this).attr('parent'));
-	_path.push($(this).children('.text').html());
+	Bookmark.parent.push($(this).attr('parent'));
+	Bookmark.path.push($(this).children('.text').html());
 	$('.path').html($(this).children('.text').html());
 	$('.back').toggle(true);
 });
@@ -68,13 +67,13 @@ $('.path').live('mousedown', function (e) {
 });
  
 $('.back').click( function(){
-	if (_path.length > 1) {
-		_path.pop();
-		$('.path').html(_path[_path.length-1]);
-		self.port.emit("GoBack", _parent.pop());
+	if (Bookmark.path.length > 1) {
+		Bookmark.path.pop();
+		$('.path').html(Bookmark.path[Bookmark.path.length-1]);
+		self.port.emit("GoBack", Bookmark.parent.pop());
 	}
 	
-	if (_path.length == 1)
+	if (Bookmark.path.length == 1)
 		$('.back').toggle(false);
 });
  
@@ -87,14 +86,12 @@ $('.button').click( function() {
 	self.port.emit ("open_homepage");	
 });
 
-self.port.on ("new_settings", function (set) {
-	// *	Set the dimensions
-	$('#panel').css('width', set.width );
-	$('#f3').css('max-height', set.height - 100);
-
-	// *	Set the background	
-	if (set.image) {
-		$('body').css('background','url('+set.image+') center top no-repeat');
-		$('body').css('background-attachment','fixed');
-	}
+self.port.on ("NewPref", function (Pref) {
+	Bookmark.root.css('height', (Pref.height - 80) + 'px');
+	// *	Background	
+	if (Pref.image != 0)
+		$('body').css('background','url('+Pref.image+') center no-repeat');
+	if (Pref.image == 0)
+		$('body').css('background','url(../images/background.jpg) center no-repeat');
+	$('body').css('background-size', 'cover');
 });

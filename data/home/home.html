@@ -9,101 +9,132 @@
 </head>
 
 <body>
+	<!-- Title -->
+	<div id="title"> Bookmarks UI </div>
 	<div id="container">
-		<!-- Title -->
-		<div class="title"> Preferences - Settings - About </div>
-
-		<!-- Theres only one of me in the world ! -->
-		<div id="mystyle">
-			<input id="browse" type="file"/>
-			<div class="open"> Load an image</div>
-			<div class="preview"> </div>
-			<div > 
-				<div class="select_opcity">
-					<div class="option" > Opacity: </div>
-					<div class="tminus"> - </div>
-					<div class="opacity"> 90 % </div>
-					<div class="tplus"> + </div>
-				</div>
-
-				<form style="width:50%; float:left">
-					<div class="theme"> 
-						<input type="radio" name="theme" value="1" id="white" >
-						<label for="white"> White theme </label>
+		<!-- LEFT -->
+		<div class="column">
+			
+			<!-- HotKeys -->
+			<div class="box">
+				<div class="title"> Hotkeys </div>
+				<div id="hotkeys"> 
+					<div id="info"> 1 </div>
+					<div class="currentkey" >	Current: &nbsp; Ctrl + Q </div>
+					<div class="option"> Click to change the standard keyboard key </div>
+					<div class="warning"> Then press any key between A and Z </div>
+					<div class="line"> 
+						<div class="change"> Change </div>
+						<div class="key">Q</div>
+						<input type="text" size="1" maxlength="1" id="keysave" style="opacity:0">
 					</div>
-					<div class="theme"> 
-						<input type="radio" name="theme" value="2" id="black" >
-						<label for="black"> Black theme </label>
+					<div class="option"> Select special keys </div>
+					<div class="line"> 
+						<div class="hkey hkey_in_use" val='1' > Ctrl </div>  
+						<div class="hkey" val='2' > Alt </div> 
+						<div class="hkey" val='4' > Shift </div>
 					</div>
-				</form>
-
-			</div>
-		</div>
+					<div class="warning"> At least one special key must be selected </div>
+					<div class="warning"> Shift key can be selected only with another special key </div>
 		
-		<!-- Panel HotKeys Settings -->
-		<div id="hotkeys"> 
-			<div id="info"> 1 </div>
-			<div class="currentkey" >	Current: &nbsp; Ctrl + Q </div>
-			<div class="option"> Click to change the standard keyboard key </div>
-			<div class="warning"> Then press any key between A and Z </div>
-			<div class="line"> 
-				<div class="change"> Change </div>
-				<div class="key">Q</div>
-				<input type="text" size="1" maxlength="1" id="keysave" style="opacity:0">
-			</div>
-			<div class="option"> Select special keys </div>
-			<div class="line"> 
-				<div class="hkey hkey_in_use" val='1' > Ctrl </div>  
-				<div class="hkey" val='2' > Alt </div> 
-				<div class="hkey" val='4' > Shift </div>
-			</div>
-			<div class="warning"> At least one special key must be selected </div>
-			<div class="warning"> Shift key can be selected only with another special key </div>
-
-			<div class="newset">
-				New set to save: None
+					<div class="newset">
+						New set to save: None
+					</div>
+		
+					<div id="resetkeys" class="default" > Default </div> 
+				</div>
 			</div>
 
-			<div class="line"> 	
-				<div class="resetkeys" > Default </div> 
+			<!-- Dimensions -->
+			<div class="box">
+				<div class="title"> Dimensions </div>
+				<div id="dimensions">
+					<div class="line">	
+						<div class="option" > Panel Width : </div>
+						<div class="minus"> - </div>
+						<div class="value"> 250 </div>
+						<div class="plus"> + </div>
+						<div class="type"> pixels </div>
+					</div>
+		
+					<div class="line">
+						<div class="option" > Panel Height : </div>
+						<div class="minus"> - </div>
+						<div class="value"> 400 </div>
+						<div class="plus"> + </div>
+						<div class="type" > pixels </div>
+					</div>
+					
+					<div class="line">
+						<div class="option" > Current Dim : </div>
+						<div class="currentdim"> 250 width * 400 height </div>
+					</div>
+					<div id="resetpanel" class="default" > Default </div>
+				</div>
 			</div>
+
+			<!-- Mouse Actions -->
+			<div class="box">
+				<div class="title"> Mouse Actions </div>
+				<div id="mouse"> 
+					<div class="line">
+						<div class="button"> Left Click : </div>
+						<select id="leftclick">
+							<option value="0"> Same Tab  </option>
+							<option value="1"> New Tab  </option>
+							<option value="2"> None  </option>
+						</select>
+					</div>
+					<div class="line">
+						<div class="button"> Middle Click : </div>
+						<select id="middleclick">
+							<option value="0"> Same Tab  </option>
+							<option value="1"> New Tab  </option>
+							<option value="2"> None  </option>
+						</select>
+					</div>
+					<div class="line">
+						<div class="button"> Right Click : </div>
+						<select id="rightclick">
+							<option value="0"> Same Tab  </option>
+							<option value="1"> New Tab  </option>
+							<option value="2"> None  </option>
+						</select>
+					</div>
+					<div id="resetmouse" class="default"> Default </div>
+				</div>
+			</div>				
+	
 		</div>
 
-		<!-- Panel Dimensions Settings -->
-		<div id="dimensions">
-			<div class="line">	
-				<div class="option" > Panel width: </div>
-				<div class="minus"> - </div>
-				<div class="value"> 250 </div>
-				<div class="plus"> + </div>
-				<div class="type"> pixels </div>
-			</div>
+		<!-- RIGHT -->
+		<div class="column">
 
-			<div class="line">
-				<div class="option" > Panel height: </div>
-				<div class="minus"> - </div>
-				<div class="value"> 400 </div>
-				<div class="plus"> + </div>
-				<div class="type" > pixels </div>
+			<!-- Personas -->
+			<div class="box">
+				<div class="title"> Background </div>
+				<div id="mystyle">
+					<div class="preview"> Click to load an image </div>
+					<input id="browse" type="file"/>
+				</div>
+				<div id="resetbackground" class="default"> Default </div>
 			</div>
 			
-			<div class="line">
-				<div class="option" > Current dims: </div>
-				<div class="currentdim"> 250 width * 400 height </div>
-			</div>
-			<div class="resetpanel" > Default </div>
-		</div>
 
-		<!-- About addon and me -->
-		<div id="about">
-			<div class="addon">	Bookmark Panel + </div>
-			<div class="version"> Version: 1.3 </div>
-			<div class="homepage"> Homepage: <a href="http://ceata.org/proiecte/bookmark-toolbar"  target="_blank" > Ceata.org </a> </div>
-			<div class="me"> By: Ivanica Gabriel </div>
-			<a href="mailto:gabriel.ivanica@gmail.com?Subject=Feedback%20-%20Bookmark%20Panel%20"> Send Feedback </a>
-			<div id="apply" > Apply </div>
+			<!-- About -->
+			<div class="box">		
+				<div class="title"> About </div>
+				<div id="about">
+					<div class="addon">	Bookmarks UI </div>
+					<div class="version"> Version: 1.3 </div>
+					<div class="homepage"> Homepage: <a href="http://ceata.org/proiecte/bookmark-toolbar"  target="_blank" > Ceata.org </a> </div>
+					<div class="me"> By: Ivanica Gabriel </div>
+					<a href="mailto:gabriel.ivanica@gmail.com?Subject=Feedback%20-%20Bookmark%20Panel%20"> Send Feedback </a>
+					<div id="apply" class="default" > Apply </div>
+				</div>
+			</div>
+			
 		</div>
-		
 	</div>
 </body>
 </html>

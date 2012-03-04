@@ -1,14 +1,14 @@
 body {
 	margin:0 auto;
-	background:url(../images/background.jpg) top center no-repeat;
-	background-attachment:fixed;
+	background:url(../images/background.jpg) center no-repeat;
+	background-size:cover;
 	-moz-user-select: none;
 	font-family:"Segoe UI", Arial, Helvetica, sans-serif;
 	cursor:default;
 }
 
 #panel {
-	width:350px;
+	width:100%;
 	margin:0 auto;
 	height:auto;
 	overflow:hidden;
@@ -23,10 +23,10 @@ body {
 	height:30px;
 	margin:0 auto;
 	color:#FFF;
-	font-family:"Segoe UI", Arial, Helvetica, sans-serif;
 	font-size:14px;
 	background:url(../images/infoback.png) center;
 	background:rgba(0,0,0,0.5);
+	float:left;
 }
 
 #info .path {
@@ -45,11 +45,12 @@ body {
 #info .back {
 	width:40px;
 	height:inherit;
-	float:left;
 	position:absolute;
 	top:0px;
+	left:0px;
 	background:url(../images/back.png) no-repeat top;
 	border-right:1px solid rgba(255,255,255,0.2);
+	border-left:1px solid rgba(255,255,255,0.2);
 	display:none;
 }
 
@@ -64,7 +65,7 @@ body {
 #f3 {
 	width:100%;
 	margin:20px 0 0 0;
-	padding:0 20px 0 10px;
+	padding:0 10px;
 	float:left;
 	overflow-x: hidden; 
 	overflow-y: auto;
@@ -74,9 +75,8 @@ body {
  *	Configuration page
  *********************/
 #config {
-	width:inherit;
+	width:100%;
 	height:30px;
-	position:absolute;
 	bottom:0px;
 	color:#FFF;
 	font-size:9px;
@@ -84,6 +84,7 @@ body {
 	text-align:center;
 	overflow:hidden;
 	-moz-user-select:none;
+	float:left
 }
 
 #config .button {
@@ -120,17 +121,12 @@ body {
 	float:left;
 }
 
-.folder:hover {
+.folder:hover, .link:hover {
 	background:rgba(255,255,255,0.3);
 	cursor:pointer;
 }
 
-.link:hover {
-	background:rgba(255,255,255,0.3);
-	cursor:pointer;
-}
-
-.favicon {
+.fav {
 	width:25px;
 	height:100%;
 	padding:0;
@@ -144,10 +140,9 @@ body {
 
 .text {
 	width:95px;
-	height:11px;
-	padding:3px 0 6px 0;
-	font-size:11px;
-	font-family:"Segoe UI", Arial, Helvetica, sans-serif;
+	height:12px;
+	padding:2px 0 6px 0;
+	font-size:12px;
 	word-wrap:break-word;
 	background-color:rgba(255,255,255,0.5);
 	overflow:hidden;
