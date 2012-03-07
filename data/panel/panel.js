@@ -1,9 +1,10 @@
 // *	Bookmarks rows
 var Bookmark = {
-	typeof	:	[, 'link', 'folder', 'separator'],
+	typeof	:	[, 'link box', 'folder box', 'separator'],
 	root	:	$('#f3'),
 	parent	:	[],
-	path	:	['Bookmarks Toolbar']
+	path	:	['Bookmarks Toolbar'],
+	box		:	$('#f3 .box'),
 }
 
 /**************************************************************************************************************
@@ -87,11 +88,18 @@ $('.button').click( function() {
 });
 
 self.port.on ("NewPref", function (Pref) {
-	Bookmark.root.css('height', (Pref.height - 80) + 'px');
+//	Bookmark.box.css('width', (Pref.width - 20) + 'px');
+//	Bookmark.root.css('height', (Pref.height - 80) + 'px');
+//	Bookmark.root.css('width', Pref.width + 'px');
 	// *	Background	
-	if (Pref.image != 0)
-		$('body').css('background','url('+Pref.image+') center no-repeat');
-	if (Pref.image == 0)
-		$('body').css('background','url(../images/background.jpg) center no-repeat');
+	switch (Pref.image) {
+		case '0':
+			$('body').css('background','url(../images/background.jpg) center no-repeat');
+			break;
+		case '1':
+			break;
+		default:
+			$('body').css('background','url('+Pref.image+') center no-repeat');
+	}
 	$('body').css('background-size', 'cover');
 });

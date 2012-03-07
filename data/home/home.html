@@ -46,32 +46,30 @@
 			</div>
 
 			<!-- Dimensions -->
-			<div class="box">
+<!--		<div class="box">
 				<div class="title"> Dimensions </div>
 				<div id="dimensions">
 					<div class="line">	
-						<div class="option" > Panel Width : </div>
+						<div class="option" > Book Width : </div>
 						<div class="minus"> - </div>
-						<div class="value"> 250 </div>
+						<div class="value"> 150 </div>
 						<div class="plus"> + </div>
 						<div class="type"> pixels </div>
 					</div>
 		
 					<div class="line">
-						<div class="option" > Panel Height : </div>
-						<div class="minus"> - </div>
-						<div class="value"> 400 </div>
-						<div class="plus"> + </div>
-						<div class="type" > pixels </div>
+						<div class="option" > Number of bookmarks in a line : </div>
+						<select id="marksNo">
+							<option value="2"> 2 </option>
+							<option value="3"> 3 </option>
+							<option value="4"> 4 </option>
+						</select>
 					</div>
 					
-					<div class="line">
-						<div class="option" > Current Dim : </div>
-						<div class="currentdim"> 250 width * 400 height </div>
-					</div>
-					<div id="resetpanel" class="default" > Default </div>
+					<div id="resetnumber" class="default" > Default </div>
 				</div>
 			</div>
+-->
 
 			<!-- Mouse Actions -->
 			<div class="box">
@@ -114,7 +112,7 @@
 			<div class="box">
 				<div class="title"> Background </div>
 				<div id="mystyle">
-					<div class="preview"> Click to load an image </div>
+					<div id="preview" image="1"> Click to load an image </div>
 					<input id="browse" type="file"/>
 				</div>
 				<div id="resetbackground" class="default"> Default </div>

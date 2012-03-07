@@ -4,14 +4,14 @@ $(document).ready( function () {
 // *	Increment and decrement buttons	
 	$('.minus').click( function(e) {
 		var val = parseInt( $(this).next().html() );
-		if (val >= 250 )
-			$(this).next().html(val - 25);
+		if (val >= 105 )
+			$(this).next().html(val - 5);
 	});
 	
 	$('.plus').click( function() {
 		var val = parseInt( $(this).prev().html() );
-		if (val <= 625 )
-			$(this).prev().html(val + 25);
+		if (val <= 295 )
+			$(this).prev().html(val + 5);
 	});
 
 // *	Select special keys
@@ -68,9 +68,8 @@ $(document).ready( function () {
 	}
 
 // *	Default
-	$("#resetpanel").click( function () {
-		$('.value').first().html('300'); 
-		$('.value').last().html('400'); 
+	$("#resetnumber").click( function () {
+		$('.value').first().html('150'); 
 	});
 	
 	$('#resetkeys').click( function () {
@@ -90,13 +89,13 @@ $(document).ready( function () {
 	});
 
 	$('#resetbackground').click( function () {
-		$('.preview').css('background','url(../images/background.jpg) center no-repeat');
-		$('.preview').attr('image', 0);
+		$('#preview').css('background','url(../images/background.jpg) center no-repeat');
+		$('#preview').attr('image', 0);
 	});
 
 // *	Personalize your panel
 	var upload = document.getElementById('browse');
-	$('.preview').click( function () {
+	$('#preview').click( function () {
 		$('#browse').click();
 	});
 	upload.onchange = function (e) {
@@ -105,7 +104,7 @@ $(document).ready( function () {
 		if ( file.type.slice(0,5) == 'image' ) {
 			var reader = new FileReader();
 			reader.onload = function (event) {
-				var preview = $('.preview');
+				var preview = $('#preview');
 				preview.css('background','url('+event.target.result+') center no-repeat');
 				preview.attr('image',event.target.result);
 				preview.css("background-size",'contain');

@@ -2,7 +2,9 @@
 
 // *	Store User Settings - Save
 var Pref = {
-	width:	300,
+	mark:	170,
+	number:	2,
+	width:	340,
 	height:	400,
 	combo:	['Q', 1, 0, 0],
 	image:	0,
@@ -11,11 +13,12 @@ var Pref = {
 
 // *	Get User Settings From The Page
 var Settings = {
-	width : function () {
-		Pref.width = parseInt( $('.value').first().html() )
+	marks : function () {
+		Pref.mark = $('.value').html();
+		Pref.number = $('#marksNo').val();
+		Pref.width = Pref.number * (parseInt(Pref.mark) + 20);
 	},
 	height : function () {
-		Pref.height = parseInt( $('.value').last().html() );
 	},
 	combo : function () {
 		Pref.combo.splice(1,3,0,0,0);
@@ -32,10 +35,10 @@ var Settings = {
 	},
 	
 	image : function () {
-		Pref.image = $('.preview').attr('image');
+		Pref.image = $('#preview').attr('image');
 	},
 	get : function () {
-		this.width();
+		this.marks();
 		this.height();
 		this.mouse();
 		this.image();
@@ -52,10 +55,6 @@ $('#apply').click ( function () {
 
 // *	Get user prefereces and overwrite those from the page
 self.port.on ('CurrentPref', function ( Pref ){
-	// *	Set current dimensions
-	$('.value').first().html( Pref.width );
-	$('.value').last().html( Pref.height );
-	$('.currentdim').html ( Pref.width + " width * "+ Pref.height + " height");
 	
 	// *	Show current key ( classes color )
 	$('.key').html( Pref.combo[0]);
@@ -83,4 +82,8 @@ self.port.on ('CurrentPref', function ( Pref ){
 	$('#leftclick').val(Pref.mouse[0]);	
 	$('#middleclick').val(Pref.mouse[1]);	
 	$('#rightclick').val(Pref.mouse[2]);
+	
+	// *	Pannel Wallpaper
+	$('#preview').css('background','url('+Pref.image+') center no-repeat');	
+	$('#preview').css("background-size",'contain');
 });
