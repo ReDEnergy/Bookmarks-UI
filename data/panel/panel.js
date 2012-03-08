@@ -88,15 +88,13 @@ $('.button').click( function() {
 });
 
 self.port.on ("NewPref", function (Pref) {
-//	Bookmark.box.css('width', (Pref.width - 20) + 'px');
-//	Bookmark.root.css('height', (Pref.height - 80) + 'px');
-//	Bookmark.root.css('width', Pref.width + 'px');
+	Bookmark.root.css('height', (Pref.height - 80) + 'px');
 	// *	Background	
 	switch (Pref.image) {
-		case '0':
+		case 'default':
 			$('body').css('background','url(../images/background.jpg) center no-repeat');
 			break;
-		case '1':
+		case 'same':
 			break;
 		default:
 			$('body').css('background','url('+Pref.image+') center no-repeat');

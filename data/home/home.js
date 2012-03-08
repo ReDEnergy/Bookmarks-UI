@@ -90,7 +90,7 @@ $(document).ready( function () {
 
 	$('#resetbackground').click( function () {
 		$('#preview').css('background','url(../images/background.jpg) center no-repeat');
-		$('#preview').attr('image', 0);
+		$('#preview').attr('image', 'default');
 	});
 
 // *	Personalize your panel

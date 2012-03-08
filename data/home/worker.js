@@ -7,16 +7,16 @@ var Pref = {
 	width:	340,
 	height:	400,
 	combo:	['Q', 1, 0, 0],
-	image:	0,
+	image:	'default',
 	mouse:	[0, 1, 1],
 }
 
 // *	Get User Settings From The Page
 var Settings = {
 	marks : function () {
-		Pref.mark = $('.value').html();
-		Pref.number = $('#marksNo').val();
-		Pref.width = Pref.number * (parseInt(Pref.mark) + 20);
+	//	Pref.mark = $('.value').html();
+	//	Pref.number = $('#marksNo').val();
+	//	Pref.width = Pref.number * (parseInt(Pref.mark) + 20);
 	},
 	height : function () {
 	},
