@@ -89,7 +89,10 @@ $('.button').click( function() {
 
 self.port.on ("NewPref", function (Pref) {
 	Bookmark.root.css('height', (Pref.height - 80) + 'px');
-	// *	Background	
+//	$('#f3 .box').css('width', Pref.mark - 30 + 'px');
+//	$('#f3 .text').css('width', Pref.mark - 55 + 'px');
+	
+	// *	Background
 	switch (Pref.image) {
 		case 'default':
 			$('body').css('background','url(../images/background.jpg) center no-repeat');
@@ -100,4 +103,8 @@ self.port.on ("NewPref", function (Pref) {
 			$('body').css('background','url('+Pref.image+') center no-repeat');
 	}
 	$('body').css('background-size', 'cover');
+});
+
+$(document).ready(function(e) {
+	
 });

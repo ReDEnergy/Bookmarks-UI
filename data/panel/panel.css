@@ -63,7 +63,7 @@ body {
  *	Bookmark panel
  *****************/
 #f3 {
-	width:340px;
+	width:105%;
 	margin:20px 0 0 0;
 	padding:0 20px 0 0;
 	float:left;
@@ -100,7 +100,7 @@ body {
 #f3 .text {
 	width:115px;
 	height:12px;
-	padding:2px 0 6px 0;
+	padding:2px 0 6px;
 	white-space:pre;
 	font-size:12px;
 	background-color:rgba(255,255,255,0.5);

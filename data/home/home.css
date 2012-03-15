@@ -209,7 +209,7 @@ body {
 }
 
 #dimensions .option {
-	width:100px;
+	width:140px;
 	padding:3px 0 0 0;
 	font-size:12px;
 	text-align:left;
@@ -228,18 +228,25 @@ body {
 	float:left;
 }
 
-#dimensions .value {
-	width:60px;
-	float:left;
-}
 #dimensions .minus:hover, .plus:hover {
 	cursor:pointer;
 	background-image: -moz-linear-gradient(bottom, rgb(40,160,0) 30%,rgb(5,180,25) 70%);
 	opacity:1;
 }
 
-#dimensions .type {
+#markwidth {
+	padding:0 0 0 5px;
+	float:left;
+}
+
+#dimensions select {
 	width:70px;
+	text-align:center;
+	float:left;
+}
+
+#dimensions .type {
+	padding:0 5px;
 	float:left;
 }
 

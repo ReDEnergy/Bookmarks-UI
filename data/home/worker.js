@@ -4,21 +4,21 @@
 var Pref = {
 	mark:	170,
 	number:	2,
-	width:	340,
 	height:	400,
 	combo:	['Q', 1, 0, 0],
-	image:	'default',
 	mouse:	[0, 1, 1],
+	version: 1.3,
+	image:	'default',
 }
 
 // *	Get User Settings From The Page
 var Settings = {
 	marks : function () {
-	//	Pref.mark = $('.value').html();
-	//	Pref.number = $('#marksNo').val();
-	//	Pref.width = Pref.number * (parseInt(Pref.mark) + 20);
+//		Pref.mark = parseInt($('#markwidth').html()) + 20 ;
+		Pref.number = $('#marksNo').val();
 	},
 	height : function () {
+		Pref.height = $('#PanelHeight').val();
 	},
 	combo : function () {
 		Pref.combo.splice(1,3,0,0,0);
@@ -77,7 +77,11 @@ self.port.on ('CurrentPref', function ( Pref ){
 			currentkey += keys[i-1];
 	currentkey += Pref.combo[0];		
 	$('.currentkey').html('Current hotkey: ' + currentkey);
-	
+
+	// *	Panel Dimensions
+	$('#marksNo').val(Pref.number);	
+	$('#PanelHeight').val(Pref.height);
+
 	// *	Mouse actions
 	$('#leftclick').val(Pref.mouse[0]);	
 	$('#middleclick').val(Pref.mouse[1]);	

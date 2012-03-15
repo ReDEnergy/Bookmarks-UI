@@ -1,19 +1,51 @@
 // JavaScript Document
 
 $(document).ready( function () {
+	
+// **********************************************************************************
 // *	Increment and decrement buttons	
 	$('.minus').click( function(e) {
-		var val = parseInt( $(this).next().html() );
+		var val = parseInt($("#markwidth").html());
 		if (val >= 105 )
-			$(this).next().html(val - 5);
+			$("#markwidth").html(val - 5);
 	});
 	
 	$('.plus').click( function() {
-		var val = parseInt( $(this).prev().html() );
+		var val = parseInt($("#markwidth").html());
 		if (val <= 295 )
-			$(this).prev().html(val + 5);
+			$("#markwidth").html(val + 5);
 	});
 
+// **********************************************************************************
+// *	Default
+	$("#resetdims").click( function () {
+//		$("#markwidth").html('400');
+		$("#PanelHeight").val(400);
+		$('#marksNo').val(2);
+	});
+	
+	$('#resetkeys').click( function () {
+		$('.key').html('Q');
+		$('.hkey').toggleClass('hkey_in_use',false);
+		$('.hkey').first().toggleClass('hkey_in_use',true);
+		$('.change').toggleClass("hkey_in_use", false);
+		$(document).unbind('keydown');
+		$('#info').html('1');
+		newset();
+	});
+	
+	$('#resetmouse').click( function () {
+		$('#leftclick').val(0);
+		$('#middleclick').val(1);
+		$('#rightclick').val(1);
+	});
+
+	$('#resetbackground').click( function () {
+		$('#preview').css('background','url(../images/background.jpg) center no-repeat');
+		$('#preview').attr('image', 'default');
+	});
+
+// ********************************************************************************** 
 // *	Select special keys
 
 	$('.hkey').click( function() {
@@ -56,6 +88,7 @@ $(document).ready( function () {
 		$(this).toggleClass("hkey_in_use");
 	});	
 
+// **********************************************************************************
 // *	New set to save
 	function newset () {
 		var combo = "";
@@ -67,32 +100,7 @@ $(document).ready( function () {
 		$('.newset').html(combo);
 	}
 
-// *	Default
-	$("#resetnumber").click( function () {
-		$('.value').first().html('150'); 
-	});
-	
-	$('#resetkeys').click( function () {
-		$('.key').html('Q');
-		$('.hkey').toggleClass('hkey_in_use',false);
-		$('.hkey').first().toggleClass('hkey_in_use',true);
-		$('.change').toggleClass("hkey_in_use", false);
-		$(document).unbind('keydown');
-		$('#info').html('1');
-		newset();
-	});
-	
-	$('#resetmouse').click( function () {
-		$('#leftclick').val(0);
-		$('#middleclick').val(1);
-		$('#rightclick').val(1);
-	});
-
-	$('#resetbackground').click( function () {
-		$('#preview').css('background','url(../images/background.jpg) center no-repeat');
-		$('#preview').attr('image', 'default');
-	});
-
+// **********************************************************************************
 // *	Personalize your panel
 	var upload = document.getElementById('browse');
 	$('#preview').click( function () {
@@ -114,6 +122,7 @@ $(document).ready( function () {
 		return false;
 	};
 
+// **********************************************************************************
 // *	Apply	
 	$('#apply').click( function () {
 		if ($('.change').hasClass("hkey_in_use") == true ) {
