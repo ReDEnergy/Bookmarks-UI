@@ -4,7 +4,6 @@ var Bookmark = {
 	root	:	$('#f3'),
 	parent	:	[],
 	path	:	['Bookmarks Toolbar'],
-	box		:	$('#f3 .box'),
 }
 
 /**************************************************************************************************************
@@ -21,12 +20,9 @@ function Element(Mark) {
 			else
 				fav.css('background-image','url('+Mark.fav+')');
 		}
-		x.append(fav);
 
 		var text = $('<div class="text"></div>');
-		text.append(Mark.title);
-		x.append(text);
-
+		x.append(text.append(fav).append(Mark.title));
 	}
 	
 	x.addClass(Bookmark.typeof[Mark.type]);
@@ -90,7 +86,6 @@ $('.button').click( function() {
 self.port.on ("NewPref", function (Pref) {
 	Bookmark.root.css('height', (Pref.height - 80) + 'px');
 //	$('#f3 .box').css('width', Pref.mark - 30 + 'px');
-//	$('#f3 .text').css('width', Pref.mark - 55 + 'px');
 	
 	// *	Background
 	switch (Pref.image) {
