@@ -1,31 +1,24 @@
 // *	Bookmarks rows
+
 var Bookmark = {
-	typeof	:	[, 'link box', 'folder box', 'separator'],
+	type	:	[null, 'link box', 'folder box', 'separator'],
 	root	:	$('#f3'),
 	parent	:	[],
 	path	:	['Bookmarks Toolbar'],
-}
+};
 
 /**************************************************************************************************************
  **************************************************************************************************************/
 
 function Element(Mark) {
-	var x = $('<div></div>');
+	var x = $('<div class="link box"></div>');
 	
-	if (Mark.type != 3 ) {
-		var fav = $('<div class="fav"></div>');
-		if (Mark.type == 1) {
-			if (Mark.fav == null)
-				fav.css('background-image','url(../images/fav.png)');
-			else
-				fav.css('background-image','url('+Mark.fav+')');
-		}
+	var fav = $('<div class="fav"></div>');
+	// fav.css('background-image','url('+Mark.fav+')');
 
-		var text = $('<div class="text"></div>');
-		x.append(text.append(fav).append(Mark.title));
-	}
+	var text = $('<div class="text"></div>');
+	x.append(text.append(fav).append(Mark.title));
 	
-	x.addClass(Bookmark.typeof[Mark.type]);
 	x.attr('cid', Mark.id);
 	x.attr('parent', Mark.parent);
 	x.attr('url', Mark.url);
@@ -36,16 +29,26 @@ function Element(Mark) {
 self.port.on("generate", function (marks) {
 	Bookmark.root.html('');
 	for (var i in marks) {
-		if (marks[i].type != 3)
 		var elem = Element(marks[i]);
 		Bookmark.root.append(elem);	
 	}
 });
 
+
+
+self.port.on("bookmark", function (bookmark) {
+	Bookmark.root.html(bookmark);
+});
+
+
+
+
 /**
  **	Navigation buttons - GUI
  **/
+
  
+/*
 $('.folder').live('click', function (){
 	self.port.emit("GetNew", $(this).attr('cid'));
 	Bookmark.parent.push($(this).attr('parent'));
@@ -53,10 +56,12 @@ $('.folder').live('click', function (){
 	$('.path').html($(this).children('.text').html());
 	$('.back').toggle(true);
 });
+*/
  
 $('.link').live('mousedown', function (e){
 	self.port.emit("OpenLink", $(this).attr('url') , e.button);
 });
+
 
 $('.path').live('mousedown', function (e) {
 	if(e.button > 0)
