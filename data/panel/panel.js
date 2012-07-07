@@ -21,7 +21,7 @@ function Element(Mark) {
 			fav.css('background-image','url('+Mark.fav+')');
 	}
 		
-	if (Mark.type == 6 || Mark.type == 5)
+	if (Mark.type == 6)
 		x.addClass("box folder");
 		
 
