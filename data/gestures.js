@@ -1,8 +1,12 @@
 /*
- * Add mouse gestures for oppening the panel
+ * Add mouse gestures for opening the panel
  * Usage	Click on the left edge of the document - pageX = 0
  */
+
+
 if (window.top == window.self) {
+	alert("od");
+	
 	document.addEventListener('mousedown', function doSomething(e) {
 		var posx = 0;
 		if (!e) var e = window.event;

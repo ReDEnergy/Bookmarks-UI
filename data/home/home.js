@@ -19,7 +19,6 @@ $(document).ready( function () {
 // **********************************************************************************
 // *	Default
 	$("#resetdims").click( function () {
-//		$("#markwidth").html('400');
 		$("#PanelHeight").val(400);
 		$('#marksNo').val(2);
 	});

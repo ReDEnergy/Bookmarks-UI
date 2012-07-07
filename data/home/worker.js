@@ -7,14 +7,13 @@ var Pref = {
 	height:	400,
 	combo:	['Q', 1, 0, 0],
 	mouse:	[0, 1, 1],
-	version: 1.3,
+	version: 1.4,
 	image:	'default',
 }
 
 // *	Get User Settings From The Page
 var Settings = {
 	marks : function () {
-//		Pref.mark = parseInt($('#markwidth').html()) + 20 ;
 		Pref.number = $('#marksNo').val();
 	},
 	height : function () {
@@ -54,7 +53,7 @@ $('#apply').click ( function () {
 });
 
 // *	Get user prefereces and overwrite those from the page
-self.port.on ('CurrentPref', function ( Pref ){
+self.port.on ('currentPref', function ( Pref ){
 	
 	// *	Show current key ( classes color )
 	$('.key').html( Pref.combo[0]);

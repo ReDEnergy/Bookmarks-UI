@@ -1,10 +1,10 @@
 {
     "id": "jid1-kSjMjr3RkZSqKA", 
-    "name": "uimark",
+    "name": "uimarks",
     "fullName": "Bookmarks UI", 
     "license": "MPL 1.1/GPL 2.0/LGPL 2.1", 
     "version": "1.4", 
     "author": "Ivanica Gabriel",
-    "description": "Just an awesome way to access your bookmarks",
+    "description": "An awesome way to access your favourite toolbar bookmarks",
     "homepage": "http://ceata.org/proiecte/bookmark-toolbar"
 }
