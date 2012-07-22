@@ -21,7 +21,7 @@ $(document).ready( function () {
 	$("#resetdims").click( function () {
 		$("#PanelHeight").val(400);
 		$('#marksNo').val(2);
-	});
+	}); 
 	
 	$('#resetkeys').click( function () {
 		$('.key').html('Q');
