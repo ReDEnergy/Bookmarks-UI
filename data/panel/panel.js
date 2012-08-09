@@ -15,13 +15,13 @@ function Element(Mark) {
 	
 	var fav = $('<div class="fav"></div>');
 	
-	if (Mark.type == 0) {
+	if (Mark.type == 0 || Mark.type == 7) {
 		x.addClass("box link")
 		if (Mark.fav != null && Mark.fav != undefined)
 			fav.css('background-image','url('+Mark.fav+')');
 	}
 		
-	if (Mark.type == 6)
+	if (Mark.type == 6 || Mark.type == 5)
 		x.addClass("box folder");
 		
 
@@ -30,7 +30,7 @@ function Element(Mark) {
 	
 	x.attr('uid', Mark.id);
 	x.attr('parent', Mark.parent);
-	x.attr('url', Mark.url);
+	x.attr('url', Mark.uri);
 	return x;
 }
 
@@ -59,7 +59,12 @@ $('.folder').live('click', function (){
 });
  
 $('.link').live('mousedown', function (e){
-	self.port.emit("openLink", $(this).attr('url') , e.button);
+	var X = e.clientX;
+	var Y = e.clientY;
+	$(this).mouseup(function (e){
+		if (e.clientX == X && e.clientY == Y)
+			self.port.emit("openLink", $(this).attr('url') , e.button);
+	});
 });
 
 
@@ -80,7 +85,7 @@ $('.back').click( function(){
 });
  
 
-/**************************************************************************************************************
+/*************************************************************************************************************
 **************************************************************************************************************/
 
 // *	Panel Settings

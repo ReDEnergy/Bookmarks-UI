@@ -2,8 +2,9 @@ body {
 	margin:0 auto;
 	background:url(../images/background.jpg) center no-repeat;
 	background-size:cover;
-	-moz-user-select: none;
 	font-family:"Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
+	-moz-user-select: none;
+	overflow:hidden;
 	cursor:default;
 }
 
@@ -67,7 +68,7 @@ body {
 	margin:20px 0 0 0;
 	padding:0 20px 0 0;
 	float:left;
-	overflow:auto;
+	overflow:hidden;
 }
 
 #f3 .box {
@@ -97,13 +98,13 @@ body {
 }
 
 #f3 .text {
+	background-color:rgba(255,255,255,0.5);
 	width:100%;
 	height:12px;
 	padding:2px 0 6px;
 	font-size:12px;
-	background-color:rgba(255,255,255,0.5);
-	overflow:hidden;
 	white-space:nowrap;
+	overflow:hidden;
 	float:left;
 }
  
@@ -111,7 +112,6 @@ body {
 	width:100%;
 	height:3px;
 	margin:5px 0;
-	background:rgba(255,255,255,0.1);
 	float:left;
 }
 
@@ -144,7 +144,6 @@ body {
 	font-weight:bold;
 	text-align:center;
 	overflow:hidden;
-	-moz-user-select:none;
 	float:left
 }
 
@@ -155,8 +154,6 @@ body {
 	margin:14px auto 0;
 	background:rgba(0,0,0,.5);
 	opacity:0.5;
-	-moz-border-radius-topleft:2px;
-	-moz-border-radius-topright:2px;
 	-moz-transition-property:margin, padding, opacity;
 	-moz-transition-duration:0.5s;
 }

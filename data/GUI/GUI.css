@@ -1,6 +1,6 @@
 body {
 	margin:0 auto;
-	background:url(../images/background.jpg) center no-repeat;
+	background:#BBB;
 	background-size:cover;
 	-moz-user-select: none;
 	font-family:"Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
@@ -84,6 +84,10 @@ body {
 #gui .box:hover {
 	background:rgba(255,255,255,0.3);
 	cursor:pointer;
+}
+
+#gui .box_drop {
+	border:dotted 2px #333;
 }
 
 #gui .fav {

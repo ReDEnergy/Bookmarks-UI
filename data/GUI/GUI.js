@@ -42,36 +42,7 @@ self.port.on("loadMarks", function (marks) {
 	}
 });
 
-self.port.on("test", function () {
-	console.log("works");
-});
-
-
-$('.folder').live('click', function (){
-	self.port.emit("getMarksFrom", $(this).attr('uid'));
-	Bookmark.parent.push($(this).attr('parent'));
-	Bookmark.path.push($(this).children('.text').html());
-	$('.path').html($(this).children('.text').html());
-	$('.back').toggle(true);
-});
- 
-$('.link').live('mousedown', function (e){
-	self.port.emit("openLink", $(this).attr('url') , e.button);
-});
-
-
-$('.path').live('mousedown', function (e) {
-	if(e.button > 0)
-		self.port.emit("openAll");
-});
- 
-$('.back').click( function(){
-	if (Bookmark.path.length > 1) {
-		Bookmark.path.pop();
-		$('.path').html(Bookmark.path[Bookmark.path.length-1]);
-		self.port.emit("goBack", Bookmark.parent.pop());
-	}
-	
-	if (Bookmark.path.length == 1)
-		$('.back').toggle(false);
+$( "#gui" ).sortable({
+	placeholder: "box box_drop",
+	revert: true
 });
