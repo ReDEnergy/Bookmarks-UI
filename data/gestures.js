@@ -4,7 +4,7 @@
  */
 
 if (window.location == window.parent.location) {
-	document.addEventListener('mousedown', function marksUI_GesturesEvent(e) {
+	document.addEventListener('mousedown', function (e) {
 		if (e.clientX == 0)
 			self.port.emit('show');
 	});	

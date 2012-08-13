@@ -1,9 +1,7 @@
 // *	Bookmarks rows
 
 var Bookmark = {
-	type	:	[null, 'link box', 'folder box', 'separator'],
-	root	:	$('#f3'),
-	parent	:	[],
+	root	:	document.getElementById('f3'),
 	path	:	['Bookmarks Toolbar'],
 };
 
@@ -11,35 +9,50 @@ var Bookmark = {
  **************************************************************************************************************/
 
 function Element(Mark) {
-	var x = $('<div></div>');
+	var box = document.createElement('div');
+	var fav = document.createElement('div');
+	var title = document.createElement('div');
 	
-	var fav = $('<div class="fav"></div>');
-	
-	if (Mark.type == 0 || Mark.type == 7) {
-		x.addClass("box link")
-		if (Mark.fav != null && Mark.fav != undefined)
-			fav.css('background-image','url('+Mark.fav+')');
-	}
-		
-	if (Mark.type == 6 || Mark.type == 5)
-		x.addClass("box folder");
-		
+	switch (Mark.type) {
+		case 0 : 	// URI
+			box.className = 'box link';
+			fav.className = 'fav_uri';
+			if (Mark.fav)
+				fav.style.backgroundImage = 'url('+Mark.fav+')';
+			break;
 
-	var text = $('<div class="text"></div>');
-	x.append(text.append(fav).append(Mark.title));
+		case 5 :
+			box.className = 'box folder';
+			fav.className = 'fav_query';
+			break;
+
+		case 6 :
+			box.className = 'box folder';
+			fav.className = 'fav_folder';
+			break;
+		
+		default :
+			break;
+		
+	}
+
+	title.className = 'title';
+	title.innerHTML = Mark.title;
+
+	box.setAttribute('id', Mark.id);
 	
-	x.attr('uid', Mark.id);
-	x.attr('parent', Mark.parent);
-	x.attr('url', Mark.uri);
-	return x;
+	box.appendChild(fav);
+	box.appendChild(title);
+	
+	return box;
 }
 
 
 self.port.on("loadMarks", function (marks) {
-	Bookmark.root.html('');
+	Bookmark.root.innerHTML = ''; 
 	for (var i in marks) {
 		var elem = Element(marks[i]);
-		Bookmark.root.append(elem);	
+		Bookmark.root.appendChild(elem);	
 	}
 });
 
@@ -49,63 +62,70 @@ self.port.on("loadMarks", function (marks) {
  **	Navigation buttons - GUI
  **/
 
- 
-$('.folder').live('click', function (){
-	self.port.emit("getMarksFrom", $(this).attr('uid'));
-	Bookmark.parent.push($(this).attr('parent'));
-	Bookmark.path.push($(this).children('.text').html());
-	$('.path').html($(this).children('.text').html());
-	$('.back').toggle(true);
-});
- 
-$('.link').live('mousedown', function (e){
-	var X = e.clientX;
-	var Y = e.clientY;
-	$(this).mouseup(function (e){
-		if (e.clientX == X && e.clientY == Y)
-			self.port.emit("openLink", $(this).attr('url') , e.button);
-	});
-});
-
-
-$('.path').live('mousedown', function (e) {
-	if(e.button > 0)
-		self.port.emit("openAll");
-});
- 
-$('.back').click( function(){
-	if (Bookmark.path.length > 1) {
-		Bookmark.path.pop();
-		$('.path').html(Bookmark.path[Bookmark.path.length-1]);
-		self.port.emit("goBack", Bookmark.parent.pop());
-	}
+document.addEventListener('click' , function (e) {
+	target = e.target;
 	
-	if (Bookmark.path.length == 1)
-		$('.back').toggle(false);
+	// console.log("Click target: " + target.id);
+	// console.log("Target className: " + target.className);
+	
+	// *	Open Addon Settings Page
+	if (target.className == 'settings') 
+		self.port.emit ("open_homepage");
+
+	if (target.className == 'path')
+		if(e.button > 0)
+			self.port.emit("openAll");
+
+	if (target.className == 'back') {
+
+		if (Bookmark.path.length > 1) {
+			Bookmark.path.pop();
+			$('.path').html(Bookmark.path[Bookmark.path.length-1]);
+			self.port.emit("goBack");
+		}
+		
+		if (Bookmark.path.length == 1)
+			$('.back').toggle(false);
+	}
+
+
+	if (target.classList.contains('title') || target.classList.contains('fav')) {
+		target = target.parentNode;
+		if (target.classList.contains('folder')) {
+
+			self.port.emit("getMarksFrom", target.getAttribute('id'));
+			var title = target.children[1].innerHTML;
+			Bookmark.path.push(title);
+			$('.path').html(title);
+			$('.back').toggle(true);
+		}
+
+		else {
+			// console.log(e.button);
+			self.port.emit("openLink", target.getAttribute('id'), e.button);
+		}
+	}
+
 });
- 
+
+
+
 
 /*************************************************************************************************************
 **************************************************************************************************************/
 
-// *	Panel Settings
-$('.button').click( function() {	
-	self.port.emit ("open_homepage");	
-});
-
 self.port.on ("newPref", function (Pref) {
-	Bookmark.root.css('height', (Pref.height - 80) + 'px');
+	Bookmark.root.style.height = Pref.height - 80 + 'px';
 	
 	// *	Background
 	switch (Pref.image) {
 		case 'default':
-			$('body').css('background','url(../images/background.jpg) center no-repeat');
+			document.body.removeAttribute('style');
 			break;
 		case 'same':
 			break;
 		default:
-			$('body').css('background','url('+Pref.image+') center no-repeat');
+			document.body.style.background = 'url('+Pref.image+') center no-repeat';
 	}
-	$('body').css('background-size', 'cover');
 });
 
