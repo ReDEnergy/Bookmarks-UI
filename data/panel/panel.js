@@ -12,6 +12,8 @@ function Element(Mark) {
 	var box = document.createElement('div');
 	var fav = document.createElement('div');
 	var title = document.createElement('div');
+
+	box.setAttribute('type', 2);
 	
 	switch (Mark.type) {
 		case 0 : 	// URI
@@ -29,6 +31,11 @@ function Element(Mark) {
 		case 6 :
 			box.className = 'box folder';
 			fav.className = 'fav_folder';
+			break;
+
+		case 9 :
+			box.className = 'box folder';
+			fav.className = 'fav_query';
 			break;
 		
 		default :
@@ -69,12 +76,17 @@ document.addEventListener('click' , function (e) {
 	// console.log("Target className: " + target.className);
 	
 	// *	Open Addon Settings Page
-	if (target.className == 'settings') 
+	
+	if (target.className == 'settings') { 
 		self.port.emit ("open_homepage");
+		return;
+	}
 
-	if (target.className == 'path')
+	if (target.className == 'path') {
 		if(e.button > 0)
 			self.port.emit("openAll");
+		return;	
+	}
 
 	if (target.className == 'back') {
 
@@ -86,10 +98,12 @@ document.addEventListener('click' , function (e) {
 		
 		if (Bookmark.path.length == 1)
 			$('.back').toggle(false);
+		
+		return;
 	}
 
 
-	if (target.classList.contains('title') || target.classList.contains('fav')) {
+	if (target.classList.contains('title')) {
 		target = target.parentNode;
 		if (target.classList.contains('folder')) {
 
@@ -101,11 +115,12 @@ document.addEventListener('click' , function (e) {
 		}
 
 		else {
-			// console.log(e.button);
 			self.port.emit("openLink", target.getAttribute('id'), e.button);
 		}
-	}
 
+		return;
+	}
+	
 });
 
 
