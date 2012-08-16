@@ -2,7 +2,9 @@
 
 var Bookmark = {
 	root	:	document.getElementById('f3'),
-	path	:	['Bookmarks Toolbar'],
+	navpath : 	document.getElementById('nav').children[0], 
+	navback : 	document.getElementById('nav').children[1], 
+	navloc	:	['Bookmarks Toolbar'],
 };
 
 /**************************************************************************************************************
@@ -55,16 +57,6 @@ function Element(Mark) {
 }
 
 
-self.port.on("loadMarks", function (marks) {
-	Bookmark.root.innerHTML = ''; 
-	for (var i in marks) {
-		var elem = Element(marks[i]);
-		Bookmark.root.appendChild(elem);	
-	}
-});
-
-
-
 /**
  **	Navigation buttons - GUI
  **/
@@ -90,14 +82,14 @@ document.addEventListener('click' , function (e) {
 
 	if (target.className == 'back') {
 
-		if (Bookmark.path.length > 1) {
-			Bookmark.path.pop();
-			$('.path').html(Bookmark.path[Bookmark.path.length-1]);
+		if (Bookmark.navloc.length > 1) {
+			Bookmark.navloc.pop();
+			Bookmark.navpath.innerHTML = Bookmark.navloc[Bookmark.navloc.length-1];
 			self.port.emit("goBack");
 		}
 		
-		if (Bookmark.path.length == 1)
-			$('.back').toggle(false);
+		if (Bookmark.navloc.length == 1)
+			Bookmark.navback.removeAttribute('style');
 		
 		return;
 	}
@@ -109,9 +101,9 @@ document.addEventListener('click' , function (e) {
 
 			self.port.emit("getMarksFrom", target.getAttribute('id'));
 			var title = target.children[1].innerHTML;
-			Bookmark.path.push(title);
-			$('.path').html(title);
-			$('.back').toggle(true);
+			Bookmark.navloc.push(title);
+			Bookmark.navpath.innerHTML = title;
+			Bookmark.navback.style.display = 'block';
 		}
 
 		else {
@@ -126,9 +118,22 @@ document.addEventListener('click' , function (e) {
 
 
 
-/*************************************************************************************************************
-**************************************************************************************************************/
+// **********************************************************************************
+// *	Addon Communication	
 
+
+// *	Receive Bookmarks
+self.port.on("loadMarks", function (marks) {
+	Bookmark.root.innerHTML = ''; 
+	for (var i in marks) {
+		var elem = Element(marks[i]);
+		Bookmark.root.appendChild(elem);	
+	}
+	
+});
+
+
+// *	Receive Panel Settings
 self.port.on ("newPref", function (Pref) {
 	Bookmark.root.style.height = Pref.height - 80 + 'px';
 	
@@ -137,8 +142,10 @@ self.port.on ("newPref", function (Pref) {
 		case 'default':
 			document.body.removeAttribute('style');
 			break;
+			
 		case 'same':
 			break;
+			
 		default:
 			document.body.style.background = 'url('+Pref.image+') center no-repeat';
 	}

@@ -3,20 +3,6 @@
 $(document).ready( function () {
 	
 // **********************************************************************************
-// *	Increment and decrement buttons	
-	$('.minus').click( function(e) {
-		var val = parseInt($("#markwidth").html());
-		if (val >= 105 )
-			$("#markwidth").html(val - 5);
-	});
-	
-	$('.plus').click( function() {
-		var val = parseInt($("#markwidth").html());
-		if (val <= 295 )
-			$("#markwidth").html(val + 5);
-	});
-
-// **********************************************************************************
 // *	Default
 	$("#resetdims").click( function () {
 		$("#PanelHeight").val(400);
@@ -113,7 +99,7 @@ $(document).ready( function () {
 			reader.onload = function (event) {
 				var preview = $('#preview');
 				preview.css('background','url('+event.target.result+') center no-repeat');
-				preview.attr('image',event.target.result);
+				preview.attr('image', event.target.result);
 				preview.css("background-size",'contain');
 			};
 			reader.readAsDataURL(file);

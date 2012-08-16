@@ -1,18 +1,18 @@
 body {
-	margin:0 auto;
-	background:url(../images/background.jpg) center no-repeat;
-	background-size:cover;
-	font-family:"Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
+	margin: 0 auto;
+	background: url(../images/panel.jpg) center no-repeat;
+	background-size: cover;
+	font-family: "Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
 	-moz-user-select: none;
-	overflow:hidden;
-	cursor:default;
+	overflow: hidden;
+	cursor: default;
 }
 
 #panel {
-	width:100%;
-	margin:0 auto;
-	height:auto;
-	overflow:hidden;
+	width: 100%;
+	margin: 0 auto;
+	height: auto;
+	overflow: hidden;
 }
 
 /**************************************
@@ -20,55 +20,55 @@ body {
  **************************************/
 
 #nav {
-	width:100%;
-	height:30px;
-	margin:0 auto;
-	color:#FFF;
-	font-size:14px;
-	background:url(../images/infoback.png) center;
-	background:rgba(0,0,0,0.5);
-	float:left;
+	width: 100%;
+	height: 30px;
+	margin: 0 auto;
+	color: #FFF;
+	font-size: 14px;
+	background: url(../images/infoback.png) center;
+	background: rgba(0,0,0,0.5);
+	float: left;
 }
 
 #nav .path {
-	width:100%;
-	height:20px;
-	padding:5px 0;
-	text-align:center;
-	overflow:hidden;
+	width: 100%;
+	height: 20px;
+	padding: 5px 0;
+	text-align: center;
+	overflow: hidden;
 }
 
 #nav .path:hover {
-	text-shadow:0 0 5px #06F;
-	cursor:pointer;
+	text-shadow: 0 0 5px #06F;
+	cursor: pointer;
 }
 
 #nav .back {
-	width:40px;
-	height:inherit;
-	position:absolute;
-	top:0px;
-	left:0px;
-	background:url(../images/back.png) no-repeat top;
-	border-right:1px solid rgba(255,255,255,0.2);
-	border-left:1px solid rgba(255,255,255,0.2);
-	display:none;
+	width: 40px;
+	height: inherit;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: url(../images/back.png) no-repeat top;
+	border-right: 1px solid rgba(255,255,255,0.2);
+	border-left: 1px solid rgba(255,255,255,0.2);
+	display: none;
 }
 
 #nav .back:hover{
-	background-position:bottom;
-	cursor:pointer;
+	background-position: bottom;
+	cursor: pointer;
 }
 
 /*****************
  *	Bookmark panel
  *****************/
 #f3 {
-	width:105%;
-	margin:20px 0 0 0;
-	padding:0 20px 0 0;
-	float:left;
-	overflow:auto;
+	width: 105%;
+	margin: 20px 0 0 0;
+	padding: 0 20px 0 0;
+	float: left;
+	overflow: auto;
 }
 
 #f3 .box {
@@ -87,24 +87,24 @@ body {
 }
 
 #f3 .fav_uri, #f3 .fav_query, #f3 .fav_folder {
-	width:25px;
-	height:20px;
-	padding:0;
-	background:rgba(255,255,255,0.3);
-	background-image:url(../images/fav2.png);
-	background-position:center center;
-	background-size:16px 16px;
-	background-repeat:no-repeat;
-	float:left;
-	box-flex:0;
+	width: 25px;
+	height: 20px;
+	padding: 0;
+	background: rgba(255, 255, 255, 0.3);
+	background-image: url(../images/fav.png);
+	background-position: center center;
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	float: left;
+	box-flex: 0;
 }
 
 #f3 .fav_query {
-	background-image:url(../images/query.png);
+	background-image: url(../images/query.png);
 }
 
 #f3 .fav_folder {
-	background-image:url(../images/folder.png);
+	background-image: url(../images/folder.png);
 }
 
 
@@ -112,66 +112,49 @@ body {
 	width: 115px;
 	height:16px;
 	padding: 2px 0; 
-	font-size:12px;
-	overflow:hidden;
-	background:rgba(255,255,255,0.3);
-	white-space:nowrap;
-	float:left;
+	font-size: 12px;
+	overflow: hidden;
+	background: rgba(255, 255, 255, 0.3);
+	white-space: nowrap;
+	float: left;
 }
  
 #f3 .separator {
-	width:100%;
-	height:3px;
-	margin:5px 0;
-	float:left;
+	width: 100%;
+	height: 3px;
+	margin: 5px 0;
+	float: left;
 }
-
-
-/**********************
- **********************/
- 
-.tooltip {
-	width:auto;
-	height:auto;
-	padding:5px;
-	border-radius:3px;
-	font-size:10px;
-	position:relative;
-	top:10px;
-	left:50px;
-	background:#FFF;
-}
-
 
 /*********************
  *	Configuration page
  *********************/
 #config {
-	width:100%;
-	height:30px;
-	bottom:0px;
-	color:#FFF;
-	font-size:9px;
-	font-weight:bold;
-	text-align:center;
-	overflow:hidden;
-	float:left
+	width: 100%;
+	height: 30px;
+	bottom: 0px;
+	color: #FFF;
+	font-size: 9px;
+	font-weight: bold;
+	text-align: center;
+	overflow: hidden;
+	float: left
 }
 
 #config .settings {
-	width:100px;
-	height:16px;
-	background:#C00;
-	margin:14px auto 0;
-	background:rgba(0,0,0,.5);
-	opacity:0.5;
-	-moz-transition-property:margin, padding, opacity;
-	-moz-transition-duration:0.5s;
+	width: 100px;
+	height: 16px;
+	background: #C00;
+	margin: 14px auto 0;
+	background: rgba(0, 0, 0, 0.5);
+	opacity: 0.5;
+	-moz-transition-property: margin, padding, opacity;
+	-moz-transition-duration: 0.5s;
 }
 
 #config .settings:hover {
-	margin:0 auto;
-	opacity:1;
-	padding:2px 0 12px 0;
-	cursor:pointer;
+	margin: 0 auto;
+	opacity: 1;
+	padding: 2px 0 12px 0;
+	cursor: pointer;
 }
