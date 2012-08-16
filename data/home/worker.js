@@ -7,7 +7,7 @@ var Pref = {
 	height:	400,
 	combo:	['Q', 1, 0, 0],
 	mouse:	[0, 1, 1],
-	version: 1.4,
+	version: 1.5,
 	image:	'default',
 }
 
