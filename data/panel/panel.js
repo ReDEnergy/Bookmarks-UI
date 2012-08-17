@@ -5,6 +5,12 @@ var Bookmark = {
 	navpath : 	document.getElementById('nav').children[0], 
 	navback : 	document.getElementById('nav').children[1], 
 	navloc	:	['Bookmarks Toolbar'],
+	fav		: 	{
+		0	: 	'fav_uri',
+		5	: 	'fav_query',
+		6	: 	'fav_folder',
+		9	: 	'fav_query',
+	}
 };
 
 /**************************************************************************************************************
@@ -15,43 +21,23 @@ function Element(Mark) {
 	var fav = document.createElement('div');
 	var title = document.createElement('div');
 
-	box.setAttribute('type', 2);
-	
-	switch (Mark.type) {
-		case 0 : 	// URI
-			box.className = 'box link';
-			fav.className = 'fav_uri';
-			if (Mark.fav)
-				fav.style.backgroundImage = 'url('+Mark.fav+')';
-			break;
 
-		case 5 :
-			box.className = 'box folder';
-			fav.className = 'fav_query';
-			break;
+	fav.className = Bookmark.fav[Mark.type];
 
-		case 6 :
-			box.className = 'box folder';
-			fav.className = 'fav_folder';
-			break;
+	if (Mark.type == 0 && Mark.fav)
+		fav.style.backgroundImage = 'url('+Mark.fav+')';
 
-		case 9 :
-			box.className = 'box folder';
-			fav.className = 'fav_query';
-			break;
-		
-		default :
-			break;
-		
-	}
+	box.className = 'box';
+	box.setAttribute('id', Mark.id);
+	box.setAttribute('type', Mark.type);
 
 	title.className = 'title';
 	title.innerHTML = Mark.title;
-
-	box.setAttribute('id', Mark.id);
 	
 	box.appendChild(fav);
 	box.appendChild(title);
+	
+	console.log(Mark.fav);
 	
 	return box;
 }
@@ -62,7 +48,7 @@ function Element(Mark) {
  **/
 
 document.addEventListener('click' , function (e) {
-	target = e.target;
+	var target = e.target;
 	
 	// console.log("Click target: " + target.id);
 	// console.log("Target className: " + target.className);
@@ -94,26 +80,47 @@ document.addEventListener('click' , function (e) {
 		return;
 	}
 
-
-	if (target.classList.contains('title')) {
+	if (target.parentNode.className == 'box') {
+		console.log(target.innerHTML);
 		target = target.parentNode;
-		if (target.classList.contains('folder')) {
+	}
 
-			self.port.emit("getMarksFrom", target.getAttribute('id'));
+	if (target.className == 'box') {
+		type = target.getAttribute('type');
+		id = target.getAttribute('id');
+		
+		if (type == 0) {
+			self.port.emit("openURI", id, e.button);
+		}
+
+		else {
+			self.port.emit("getMarksFrom", id);
 			var title = target.children[1].innerHTML;
 			Bookmark.navloc.push(title);
 			Bookmark.navpath.innerHTML = title;
 			Bookmark.navback.style.display = 'block';
 		}
 
-		else {
-			self.port.emit("openLink", target.getAttribute('id'), e.button);
-		}
-
 		return;
 	}
 	
 });
+
+
+var Events = {
+	folderClick : function (target) {
+		self.port.emit("getMarksFrom", target.getAttribute('id'));
+		var title = target.children[1].innerHTML;
+		Bookmark.navloc.push(title);
+		Bookmark.navpath.innerHTML = title;
+		Bookmark.navback.style.display = 'block';
+	},
+
+	openURI : function (target) {
+		self.port.emit("openURI", target.getAttribute('id'), e.button);
+	}
+
+}
 
 
 
