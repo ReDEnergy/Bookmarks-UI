@@ -16,7 +16,7 @@ var Bookmark = {
 /**************************************************************************************************************
  **************************************************************************************************************/
 
-function Element(Mark) {
+function Element(Mark, position) {
 	var box = document.createElement('div');
 	var fav = document.createElement('div');
 	var title = document.createElement('div');
@@ -30,6 +30,8 @@ function Element(Mark) {
 	box.className = 'box';
 	box.setAttribute('id', Mark.id);
 	box.setAttribute('type', Mark.type);
+	box.style.left = (position % 2) * 170 + 'px'; 
+	box.style.top  = Math.floor(position / 2) * 35 + 'px'; 
 
 	title.className = 'title';
 	title.innerHTML = Mark.title;
@@ -38,6 +40,10 @@ function Element(Mark) {
 	box.appendChild(title);
 	
 	return box;
+}
+
+function setPosition (box) {
+	box.setAttribute('style', postion);
 }
 
 
@@ -129,7 +135,7 @@ var Events = {
 self.port.on("loadMarks", function (marks) {
 	Bookmark.root.innerHTML = ''; 
 	for (var i in marks) {
-		var elem = Element(marks[i]);
+		var elem = Element(marks[i], i);
 		Bookmark.root.appendChild(elem);	
 	}
 	

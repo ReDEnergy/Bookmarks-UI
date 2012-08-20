@@ -12,7 +12,6 @@ body {
 	width: 100%;
 	margin: 0 auto;
 	height: auto;
-	overflow: hidden;
 }
 
 /**************************************
@@ -65,10 +64,12 @@ body {
  *****************/
 #f3 {
 	width: 105%;
+	height: 400px;
 	margin: 20px 0 0 0;
 	padding: 0 20px 0 0;
 	float: left;
 	overflow: auto;
+	position: relative;
 }
 
 #f3 .box {
@@ -78,7 +79,15 @@ body {
 	padding: 5px;
 	background: rgba(255,255,255,0.1);
 	overflow: hidden;
-	float: left;
+	position: absolute;
+	
+}
+
+#f3 .box_drag {
+	opacity: 0.75;
+	border-radius: 5px;
+	
+	-moz-transform: scale(0.8);
 }
 
 #f3 .box:hover {
@@ -138,21 +147,23 @@ body {
 	font-weight: bold;
 	text-align: center;
 	overflow: hidden;
-	float: left
+	float: left;
 }
 
-#config .settings {
+#config > div {
 	width: 100px;
 	height: 16px;
 	background: #C00;
-	margin: 14px auto 0;
+	margin: 14px 0;
 	background: rgba(0, 0, 0, 0.5);
 	opacity: 0.5;
+	float: left;
+
 	-moz-transition-property: margin, padding, opacity;
 	-moz-transition-duration: 0.5s;
 }
 
-#config .settings:hover {
+#config > div:hover {
 	margin: 0 auto;
 	opacity: 1;
 	padding: 2px 0 12px 0;
