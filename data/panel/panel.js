@@ -37,8 +37,6 @@ function Element(Mark) {
 	box.appendChild(fav);
 	box.appendChild(title);
 	
-	console.log(Mark.fav);
-	
 	return box;
 }
 
@@ -80,10 +78,8 @@ document.addEventListener('click' , function (e) {
 		return;
 	}
 
-	if (target.parentNode.className == 'box') {
-		console.log(target.innerHTML);
+	if (target.parentNode.className == 'box')
 		target = target.parentNode;
-	}
 
 	if (target.className == 'box') {
 		type = target.getAttribute('type');
