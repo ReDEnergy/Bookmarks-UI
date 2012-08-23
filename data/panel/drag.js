@@ -33,7 +33,6 @@ function newBox (id, offsetX, offsetY) {
 	box.setAttribute("id", "box"+id);
 	box.setAttribute("draggable", "true");
 	box.setAttribute('ready', 'true');
-	// box.innerHTML = id; 
 	box.style.left = offsetX + 'px';
 	box.style.top = offsetY + 'px';
 	return box;

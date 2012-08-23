@@ -17,10 +17,10 @@ var Bookmark = {
  **************************************************************************************************************/
 
 function Element(Mark, position) {
-	var box = document.createElement('div');
-	var fav = document.createElement('div');
-	var title = document.createElement('div');
-
+	var box		= document.createElement('div');
+	var fav		= document.createElement('div');
+	var title	= document.createElement('div');
+	var text	= document.createTextNode(Mark.title);
 
 	fav.className = Bookmark.fav[Mark.type];
 
@@ -34,7 +34,7 @@ function Element(Mark, position) {
 	box.style.top  = Math.floor(position / 2) * 35 + 'px'; 
 
 	title.className = 'title';
-	title.innerHTML = Mark.title;
+	title.textContent = Mark.title;
 	
 	box.appendChild(fav);
 	box.appendChild(title);
@@ -74,7 +74,7 @@ document.addEventListener('click' , function (e) {
 
 		if (Bookmark.navloc.length > 1) {
 			Bookmark.navloc.pop();
-			Bookmark.navpath.innerHTML = Bookmark.navloc[Bookmark.navloc.length-1];
+			Bookmark.navpath.textContent = Bookmark.navloc[Bookmark.navloc.length-1];
 			self.port.emit("goBack");
 		}
 		
@@ -97,9 +97,9 @@ document.addEventListener('click' , function (e) {
 
 		else {
 			self.port.emit("getMarksFrom", id);
-			var title = target.children[1].innerHTML;
+			var title = target.children[1].textContent;
 			Bookmark.navloc.push(title);
-			Bookmark.navpath.innerHTML = title;
+			Bookmark.navpath.textContent = title;
 			Bookmark.navback.style.display = 'block';
 		}
 
@@ -112,9 +112,9 @@ document.addEventListener('click' , function (e) {
 var Events = {
 	folderClick : function (target) {
 		self.port.emit("getMarksFrom", target.getAttribute('id'));
-		var title = target.children[1].innerHTML;
+		var title = target.children[1].textContent;
 		Bookmark.navloc.push(title);
-		Bookmark.navpath.innerHTML = title;
+		Bookmark.navpath.textContent = title;
 		Bookmark.navback.style.display = 'block';
 	},
 
@@ -133,7 +133,7 @@ var Events = {
 
 // *	Receive Bookmarks
 self.port.on("loadMarks", function (marks) {
-	Bookmark.root.innerHTML = ''; 
+	Bookmark.root.textContent = ''; 
 	for (var i in marks) {
 		var elem = Element(marks[i], i);
 		Bookmark.root.appendChild(elem);	
