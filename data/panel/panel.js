@@ -2,14 +2,14 @@
 
 var Bookmark = {
 	root	:	document.getElementById('f3'),
-	navpath : 	document.getElementById('nav').children[0], 
-	navback : 	document.getElementById('nav').children[1], 
+	navpath	:	document.getElementById('nav').children[0], 
+	navback	:	document.getElementById('nav').children[1], 
 	navloc	:	['Bookmarks Toolbar'],
-	fav		: 	{
-		0	: 	'fav_uri',
-		5	: 	'fav_query',
-		6	: 	'fav_folder',
-		9	: 	'fav_query',
+	fav		:	{
+		0	:	'fav_uri',
+		5	:	'fav_query',
+		6	:	'fav_folder',
+		9	:	'fav_query',
 	}
 };
 
@@ -24,8 +24,8 @@ function Element(Mark, position) {
 
 	fav.className = Bookmark.fav[Mark.type];
 
-	if (Mark.type == 0 && Mark.fav)
-		fav.style.backgroundImage = 'url('+Mark.fav+')';
+	if (Mark.type === 0 && Mark.fav)
+		fav.style.backgroundImage = 'url(' + Mark.fav + ')';
 
 	box.className = 'box';
 	box.setAttribute('id', Mark.id);
@@ -41,11 +41,6 @@ function Element(Mark, position) {
 	
 	return box;
 }
-
-function setPosition (box) {
-	box.setAttribute('style', postion);
-}
-
 
 /**
  **	Navigation buttons - GUI
