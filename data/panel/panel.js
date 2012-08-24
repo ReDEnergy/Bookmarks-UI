@@ -1,7 +1,7 @@
 // *	Bookmarks rows
 
 var Bookmark = {
-	root	:	document.getElementById('f3'),
+	root	:	document.getElementById('marks'),
 	navpath	:	document.getElementById('nav').children[0], 
 	navback	:	document.getElementById('nav').children[1], 
 	navloc	:	['Bookmarks Toolbar'],
@@ -30,8 +30,6 @@ function Element(Mark, position) {
 	box.className = 'box';
 	box.setAttribute('id', Mark.id);
 	box.setAttribute('type', Mark.type);
-	box.style.left = (position % 2) * 170 + 'px'; 
-	box.style.top  = Math.floor(position / 2) * 35 + 'px'; 
 
 	title.className = 'title';
 	title.textContent = Mark.title;
@@ -120,8 +118,6 @@ var Events = {
 }
 
 
-
-
 // **********************************************************************************
 // *	Addon Communication	
 
@@ -133,13 +129,12 @@ self.port.on("loadMarks", function (marks) {
 		var elem = Element(marks[i], i);
 		Bookmark.root.appendChild(elem);	
 	}
-	
 });
 
 
 // *	Receive Panel Settings
 self.port.on ("newPref", function (Pref) {
-	Bookmark.root.style.height = Pref.height - 80 + 'px';
+	Bookmark.root.style.height = Pref.height - 85 + 'px';
 	
 	// *	Background
 	switch (Pref.image) {
