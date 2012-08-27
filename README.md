@@ -1,8 +1,6 @@
 ================================================
-				Bookmarks UI      
+	Bookmarks UI - Firefox Addon
 ================================================
-
-Firefox Addon
 
 Iterface for interacting with browser bookmarks
 
