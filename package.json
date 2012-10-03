@@ -1,10 +1,12 @@
 {
+    "name": "bookmarks-ui",
     "id": "jid1-kSjMjr3RkZSqKA", 
-    "name": "uimark",
     "fullName": "Bookmarks UI", 
+    "description": "Access your favourite bookmarks easy and fast with Bookmarks UI",
+
     "license": "GPL 3.0", 
-    "version": "1.5", 
-    "author": "Ivanica Gabriel",
-    "description": "An awesome way to access your favourite toolbar bookmarks",
+    "version": "1.5.1",
+
+    "author": "Gabriel Ivanica",
     "homepage": "http://www.developertek.com/"
 }
