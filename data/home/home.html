@@ -3,142 +3,155 @@
 <head>
 	<meta charset="utf-8">
 	<title>Bookmark UI</title>
-    <link type="text/css" rel="stylesheet" href="resource://jid1-ksjmjr3rkzsqka-at-jetpack/uimark/data/home/home.css">
+    <link type="text/css" rel="stylesheet" href="resource://jid1-ksjmjr3rkzsqka-at-jetpack/bookmarks-ui/data/home/home.css">
+    <link type="text/css" rel="stylesheet" href="home.css">
 </head>
 
 <body>
-	<!-- Title -->
-	<div id="title"> Bookmarks UI </div>
-	<div id="container">
-		<!-- LEFT -->
-		<div class="column">
+	
+	<div id="wrapper">
+
+		<!-- Identity -->
+		<div id="identity"> 
+			<div class="logo"></div>
+			<div class="title"> 
+				Bookmarks-UI
+				<div class="promote"> Easy, Light and Fast </div>
+			</div>
+		</div>
+		
+		
+		<div id="container">
+			<!-- LEFT -->
+			<div class="column">
+				
+				<!-- HotKeys -->
+				<div class="box">
+					<div class="title"> Hotkeys </div>
+					<div id="hotkeys"> 
+						<div id="info"> 1 </div>
+						<div class="currentkey" >	Current: &nbsp; Ctrl + Q </div>
+						<div class="option"> Click to change the standard keyboard key </div>
+						<div class="warning"> Then press any key between A and Z </div>
+						<div class="line"> 
+							<div class="change"> Change </div>
+							<div class="key">Q</div>
+							<input type="text" size="1" maxlength="1" id="keysave" style="opacity:0">
+						</div>
+						<div class="option"> Select special keys </div>
+						<div class="line"> 
+							<div class="hkey hkey_in_use" val='1' > Ctrl </div>  
+							<div class="hkey" val='2' > Alt </div> 
+							<div class="hkey" val='4' > Shift </div>
+						</div>
+						<div class="warning"> At least one special key must be selected </div>
+						<div class="warning"> Shift key can be selected only with another special key </div>
 			
-			<!-- HotKeys -->
-			<div class="box">
-				<div class="title"> Hotkeys </div>
-				<div id="hotkeys"> 
-					<div id="info"> 1 </div>
-					<div class="currentkey" >	Current: &nbsp; Ctrl + Q </div>
-					<div class="option"> Click to change the standard keyboard key </div>
-					<div class="warning"> Then press any key between A and Z </div>
-					<div class="line"> 
-						<div class="change"> Change </div>
-						<div class="key">Q</div>
-						<input type="text" size="1" maxlength="1" id="keysave" style="opacity:0">
+						<div class="newset">
+							New set to save: None
+						</div>
+			
+						<div id="resetkeys" class="default" > Default </div> 
 					</div>
-					<div class="option"> Select special keys </div>
-					<div class="line"> 
-						<div class="hkey hkey_in_use" val='1' > Ctrl </div>  
-						<div class="hkey" val='2' > Alt </div> 
-						<div class="hkey" val='4' > Shift </div>
+				</div>
+	
+				<!-- Dimensions -->
+				<div class="box">
+					<div class="title"> Dimensions </div>
+					<div id="dimensions">
+						<div class="line">
+							<div class="option" > Panel height: </div>
+							<select id="PanelHeight">
+								<option value="200"> 200 px </option>
+								<option value="250"> 250 px </option>
+								<option value="300"> 300 px </option>
+								<option value="350"> 350 px </option>
+								<option value="400" selected="selected"> 400 px </option>
+								<option value="450"> 450 px </option>
+								<option value="500"> 500 px </option>
+								<option value="550"> 550 px </option>
+								<option value="600"> 600 px </option>
+							</select>						
+						</div>
+	
+						<div class="line">
+							<div class="option" > Bookmarks in a row : </div>
+							<select id="marksNo">
+								<option value="1"> 1 </option>
+								<option value="2" selected="selected"> 2 </option>
+								<option value="3"> 3 </option>
+								<option value="4"> 4 </option>
+							</select>
+						</div>
+						
+						<div id="resetdims" class="default" > Default </div>
 					</div>
-					<div class="warning"> At least one special key must be selected </div>
-					<div class="warning"> Shift key can be selected only with another special key </div>
+				</div>
+	
+	
+				<!-- Mouse Actions -->
+				<div class="box">
+					<div class="title"> Mouse Actions </div>
+					<div id="mouse"> 
+						<div class="line">
+							<div class="button"> Left Click : </div>
+							<select id="leftclick">
+								<option value="0"> Same Tab  </option>
+								<option value="1"> New Tab  </option>
+								<option value="2"> None  </option>
+							</select>
+						</div>
+						<div class="line">
+							<div class="button"> Middle Click : </div>
+							<select id="middleclick">
+								<option value="0"> Same Tab  </option>
+								<option value="1"> New Tab  </option>
+								<option value="2"> None  </option>
+							</select>
+						</div>
+						<div class="line">
+							<div class="button"> Right Click : </div>
+							<select id="rightclick">
+								<option value="0"> Same Tab  </option>
+								<option value="1"> New Tab  </option>
+								<option value="2"> None  </option>
+							</select>
+						</div>
+						<div id="resetmouse" class="default"> Default </div>
+					</div>
+				</div>				
 		
-					<div class="newset">
-						New set to save: None
+			</div>
+	
+			<!-- RIGHT -->
+			<div class="column">
+	
+				<!-- Personas -->
+				<div class="box">
+					<div class="title"> Background </div>
+					<div id="mystyle">
+						<div id="preview" image="same"> Click to load an image </div>
+						<input id="browse" type="file"/>
 					</div>
-		
-					<div id="resetkeys" class="default" > Default </div> 
+					<div id="resetbackground" class="default"> Default </div>
+				</div>
+				
+	
+				<!-- About -->
+				<div class="box">		
+					<div class="title"> About Bookmarks UI </div>
+					<div id="about">
+						<div class="version"></div>
+						<div> By: Gabriel Ivanica </div>
+						<div>
+							<a href="mailto:gabriel.ivanica@gmail.com?Subject=Feedback%20-%20Bookmarks%20UI%20"> Send Feedback</a>
+						</div>
+						<div id="apply" class="default" > Apply </div>
+					</div>
 				</div>
 			</div>
-
-			<!-- Dimensions -->
-			<div class="box">
-				<div class="title"> Dimensions </div>
-				<div id="dimensions">
-					<div class="line">
-						<div class="option" > Panel height: </div>
-						<select id="PanelHeight">
-							<option value="200"> 200 px </option>
-							<option value="250"> 250 px </option>
-							<option value="300"> 300 px </option>
-							<option value="350"> 350 px </option>
-							<option value="400" selected="selected"> 400 px </option>
-							<option value="450"> 450 px </option>
-							<option value="500"> 500 px </option>
-							<option value="550"> 550 px </option>
-							<option value="600"> 600 px </option>
-						</select>						
-					</div>
-
-					<div class="line">
-						<div class="option" > Bookmarks in a row : </div>
-						<select id="marksNo">
-							<option value="1"> 1 </option>
-							<option value="2" selected="selected"> 2 </option>
-							<option value="3"> 3 </option>
-							<option value="4"> 4 </option>
-						</select>
-					</div>
-					
-					<div id="resetdims" class="default" > Default </div>
-				</div>
-			</div>
-
-
-			<!-- Mouse Actions -->
-			<div class="box">
-				<div class="title"> Mouse Actions </div>
-				<div id="mouse"> 
-					<div class="line">
-						<div class="button"> Left Click : </div>
-						<select id="leftclick">
-							<option value="0"> Same Tab  </option>
-							<option value="1"> New Tab  </option>
-							<option value="2"> None  </option>
-						</select>
-					</div>
-					<div class="line">
-						<div class="button"> Middle Click : </div>
-						<select id="middleclick">
-							<option value="0"> Same Tab  </option>
-							<option value="1"> New Tab  </option>
-							<option value="2"> None  </option>
-						</select>
-					</div>
-					<div class="line">
-						<div class="button"> Right Click : </div>
-						<select id="rightclick">
-							<option value="0"> Same Tab  </option>
-							<option value="1"> New Tab  </option>
-							<option value="2"> None  </option>
-						</select>
-					</div>
-					<div id="resetmouse" class="default"> Default </div>
-				</div>
-			</div>				
 	
 		</div>
-
-		<!-- RIGHT -->
-		<div class="column">
-
-			<!-- Personas -->
-			<div class="box">
-				<div class="title"> Background </div>
-				<div id="mystyle">
-					<div id="preview" image="same"> Click to load an image </div>
-					<input id="browse" type="file"/>
-				</div>
-				<div id="resetbackground" class="default"> Default </div>
-			</div>
-			
-
-			<!-- About -->
-			<div class="box">		
-				<div class="title"> About Bookmarks UI </div>
-				<div id="about">
-					<div class="version"></div>
-					<div> By: Gabriel Ivanica </div>
-					<div>
-						<a href="mailto:gabriel.ivanica@gmail.com?Subject=Feedback%20-%20Bookmarks%20UI%20"> Send Feedback</a>
-					</div>
-					<div id="apply" class="default" > Apply </div>
-				</div>
-			</div>
-		</div>
-
 	</div>
 </body>
 </html>
