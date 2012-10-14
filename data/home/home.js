@@ -1,6 +1,7 @@
 // JavaScript Document
 
-$(document).ready( function () {
+
+/*
 	
 // **********************************************************************************
 // *	Default
@@ -85,35 +86,73 @@ $(document).ready( function () {
 		$('.newset').html(combo);
 	}
 
-// **********************************************************************************
-// *	Personalize your panel
-	var upload = document.getElementById('browse');
-	$('#preview').click( function () {
-		$('#browse').click();
-	});
-	upload.onchange = function (e) {
-		e.preventDefault();
-		var file = upload.files[0];
-		if ( file.type.slice(0,5) == 'image' ) {
-			var reader = new FileReader();
-			reader.onload = function (event) {
-				var preview = $('#preview');
-				preview.css('background','url('+event.target.result+') center no-repeat');
-				preview.attr('image', event.target.result);
-				preview.css("background-size",'contain');
-			};
-			reader.readAsDataURL(file);
-		}
-		return false;
-	};
+/*******************
+ *	Panel Background
+ *******************/	
 
-// **********************************************************************************
-// *	Apply	
-	$('#apply').click( function () {
-		if ($('.change').hasClass("hkey_in_use") == true ) {
-			$('.change').toggleClass("hkey_in_use",false);
-			$(document).unbind('keydown');
-		}
-		$('.currentdim').html( $('.value').first().html() +" width * "+  $('.value').last().html() + " height");
-	});
-});
+window.onload = function () {
+	LoadBackground.load();	
+}
+
+
+var LoadBackground = function() {
+	
+	var _load_img;
+	var _preview;
+	var _upload;
+	var _image;
+
+	function listen() {
+		_load_img = document.getElementById("load_img");
+		_preview = document.getElementById("preview");
+		_upload = document.getElementById("browse_img");
+		
+		_load_img.onclick = getImage; 
+	}
+	
+	function getImage() {
+		_upload.click();
+		_upload.onchange = function (e) {
+			
+			e.preventDefault();
+			
+			var file = _upload.files[0];
+			
+			if ( file.type.slice(0,5) == 'image' ) {
+				
+				var reader = new FileReader();
+				
+				reader.onload = function (event) {
+					_preview.style.background = 'url(' + event.target.result + ') center no-repeat';
+					_preview.style.backgroundSize = 'contain';
+					_preview.style.height = 200 + 'px';
+					_image = event.target.result;
+				};
+	
+				reader.readAsDataURL(file);
+			}
+			
+			return false;
+		};
+		
+	}
+	
+	return {
+		load : listen
+	}
+	
+}();
+
+
+
+
+
+
+
+
+
+
+
+
+
+

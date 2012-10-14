@@ -1,7 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-
 @font-face {
     font-family: "Open Sans";
     font-style: normal;
@@ -32,22 +31,38 @@
 
 
 /*
- * Body
+ 	Theme Colors
+ 	
+ 		green		background-color: #359740;
+
+ 		blue		background: -moz-linear-gradient(top, #43A6E1 0%, #257BC2 100%);
+					background-color: #3490D2;
+
+ 		gray		background: -moz-linear-gradient(top, #9e9e9e 0%, #747474 100%);
+ 					background: -moz-linear-gradient(top, #8d8d8d 0%, #525252 100%);
+
  */
+
+
+
+/***********
+ * Body Page
+ ***********/
 
 body {
 	margin:0;
 
-	background-color:#EBF1F5;
-	background-image:url(../images/grain_header.png), url(../images/grain.png);
+	background-color: #EBF1F5;
+	background-image: url(../images/grain_header.png), url(../images/grain.png);
 	background-repeat: repeat-x, repeat;
 
-	font-size:12px;
+	font-size: 12px;
 	font-family: "Open Sans", "Segoe UI", Arial, Helvetica, sans-serif;
 
-	cursor:default;
+	cursor: default;
 
-	-moz-user-select:none;
+	-moz-user-select: none;
+	
 }
 
 #wrapper {
@@ -66,9 +81,10 @@ body {
 
 
 #identity {
-	width:100%;
-	text-align:center;
+	width: 100%;
+	text-align: center;
 	font-family: "Open Sans Light", "Open Sans", Arial, Helvetica, sans-serif;
+	font-weight: 400;
 }
 
 #identity .logo {
@@ -85,16 +101,12 @@ body {
 }
 
 #identity .title {
-	height: 130px;
+	height: 100px;
 	background-image: url("../images/identity-marks.png");
-	background-position: center 10px;
+	background-position: center center;
 	background-repeat: no-repeat;
 	font-size: 60px;
 	overflow: hidden;
-}
-
-#identity .promote {
-	font-size: 30px;
 }
 
 /* ==================================================================================================== */
@@ -107,7 +119,7 @@ body {
  *******************/
 
 #container {
-	width:800px;
+	width:900px;
 	margin:30px auto;
 	color: #333;
 	text-align: center;
@@ -115,56 +127,86 @@ body {
 }
 
 #container .box {
-	width: 400px;
-	height: 150px;
-	margin: 0 auto 20px;
+	width: 410px;
+	height: auto;
+	margin: 20px;
 	border: 5px solid rgba(255, 255, 255, 0.8);
 	display: table;
+	
+	float: left;
+
+	-moz-box-sizing: border-box;
+}
+
+#container .box > div {
+	display:table-cell;
+	vertical-align: middle;
 }
 
 #container .title {
 	width: 40%;
 	font-size: 24px;
 	border-right: 5px solid rgba(255, 255, 255, 0.8);
-	display:table-cell;
-	vertical-align: middle;
 }
 
 #container .cell {
 	width: 100%;
-	background-color: rgba(255, 255, 255, 0.8);
+	
+	font-size: 16px;
 	overflow: hidden;
 
 	-moz-box-sizing: border-box;
 }
 
+/*******************
+ *	Disable Option 
+ *******************/
+
 #container .state {
 	width: 100%;
 	height: 30px;
+	padding: 4px 0;
 	margin: 0 0 5px 0;
-	padding: 2px 0;
+
+	
 	background: -moz-linear-gradient(top, #9e9e9e 0%, #747474 100%);
+	background: -moz-linear-gradient(top, #8d8d8d 0%, #525252 100%);
+	background: #747474;
+
 	color: #FFF;
-	font-size: inherit;
+	font-size: 14px;
 	float: left;
+
+	-moz-box-sizing: border-box;
 }
 
 #container .state:hover {
-	cursor: pointer;
-	background: -moz-linear-gradient(top, #3eb038 0%, #359740 100%);
+	background: -moz-linear-gradient(top, #8d8d8d 0%, #525252 100%);
+	background: #525252;
+	
 } 
+
+
+/*******************
+ *	Reset Default 
+ *******************/
 
 #container .reset {
 	width: 100%;
 	height: 30px;
+	padding: 4px 0;
 
-	color: #FFF;
 	background: -moz-linear-gradient(top, #43A6E1 0%, #257BC2 100%);
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFF;
 
 	float: left;
 
+	-moz-box-sizing: border-box;
 	-moz-transition: opacity 0.3s;
 	opacity: 0.6;
+
 }
 
 #container .reset:hover {
@@ -179,12 +221,62 @@ body {
 
 
 /*******************
+ *	Select List
+ *******************/
+
+.selectlist {
+	width: 100%;
+	height: 30px;
+	margin: 0 0 5px 0;
+	background-color: #3490D2;
+	
+	color: #FFF;
+	font-size: 14px;
+	float: left;
+}
+
+.selectlist .info {
+	width: 66.66%;
+	height: 100%;
+	padding: 4px 0;
+
+	border-right: 2px solid rgba(255, 255, 255, 0.8);
+	float: left;
+
+	-moz-box-sizing: border-box;
+}
+
+.selectlist .drop {
+	width: 33.33%;
+	height: 100%;
+	padding: 4px 15px 4px 0;
+
+	background-image: url("../images/drop_list_sign.png");
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-color: #359740;	
+
+	float: left;
+	
+	-moz-box-sizing: border-box;
+}
+
+.selectlist .drop:hover {
+	cursor: pointer;
+	background-color: #208B20;	
+}
+
+
+/* ==================================================================================================== */
+/* ==================================================================================================== */
+
+
+/*******************
  *	HotKeys Settings
  *******************/
 
 #hotkeys {
 	width: 100%;
-	height: 150px;
 	float: left;
 	color: #FFF;
 	font-size: 16px;
@@ -192,243 +284,120 @@ body {
 	display: table;
 }
 
-#hotkeys .key {
-	width: 100%;
-	height: 30px;
-	margin: 0 0 5px 0;
-	background: -moz-linear-gradient(top, #43A6E1 0%, #257BC2 100%);
-	float: left;
-}
-
-#hotkeys > div {
-	-moz-box-sizing: border-box;
-}
-
-#hotkeys .info {
-	width: 160px;
-
-	height: inherit;
-	padding: 2px 0;
-
-	border-right: 2px solid #FFF;
-	float: left;
-
-	-moz-box-sizing: border-box;
-}
-
-/***********************
- *	Drop Down Key Letter
- ***********************/
-
-#keyletters {
-	width: 100px;
-	height: 100%;
-	
-	margin: 0 -20px 0 0;
-	padding: 6px 0;
-
-	background: -moz-linear-gradient(top, #43A6E1 0%, #257BC2 100%);
-	background-image: url("../images/drop_list_sign.png");
-	background-position: 50px center;
-	background-repeat: no-repeat;
-
-	font-size: inherit;
-	text-align: inherit;
-	color: #FFF;
-	float: right;
-
-	border: none;
-} 
-
-#keyletters:hover {
-	cursor: pointer;
-}
-
-#keyletters option {
-	padding: inherit;
-	
-	color: #000;
-}
-
-
-
 /***********************
  * Special Key 
  ***********************/
 
-#hotkeys .hkey {
-	width: 80px;
+#specialkey {
+	width: 100%;
 	height: 30px;
+	margin: 0 0 5px 0;
 	background: -moz-linear-gradient(top, #43A6E1 0%, #257BC2 100%);
+
+	font-size: 14px;
+
 	float: left;
 }
 
-#hotkeys .hkey:hover {
+#specialkey > div {
+	width: 33.33%;
+	height: 30px;
+	padding: 4px 0;
+
+	float: left;
+
+	-moz-box-sizing: border-box;
+	
+}
+
+#specialkey > div:nth-child(2) {
+	border-left: 2px solid rgba(255, 255, 255, 0.8);
+	border-right: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+
+#specialkey > div:hover {
 	cursor: pointer;
+	background-color: #359740;
 }
 
 #hotkeys .hkey_use {
-	background-image: -moz-linear-gradient(bottom, rgb(5,180,25) 30%, rgb(40,160,0) 70%);
+	background-color: #359740;
 }
 
 
 /* ==================================================================================================== */
 /* ==================================================================================================== */
-/* ==================================================================================================== */
 
+
+/******************
+ *	Mouse Actions
+ ******************/
+ 
+#mouse .selectlist {
+	margin: 0 0 5px 0;
+}
+
+#mouse .info {
+	width: 50%;
+	padding: 4px 0 4px 20px;
+	text-align: left;
+}
+
+#mouse .drop {
+	width: 50%;
+}
+
+
+/* ==================================================================================================== */
+/* ==================================================================================================== */
 
 
 /*******************
  *	Panel Dimensions
  *******************/
 
-#dimensions {
-	width: 100%;
-	text-align:center;
-	font-size:13px;
-	color:#36A;
-	float:left;
-}
+/* ==================================================================================================== */
+/* ==================================================================================================== */
 
-#dimensions .line {
-	width:100%;
-	height:20px;
-	margin:5px 0;
-}
+/*******************
+ *	Panel Background
+ *******************/
 
-#dimensions .option {
-	width:140px;
-	padding:3px 0 0 0;
-	font-size:12px;
-	text-align:left;
-	font-weight:bold;
-	float:left;
-}
-
-#dimensions .minus, .plus {
-	width:20px;
-	height:100%;
-	background-image: -moz-linear-gradient(top, rgb(10,140,150) 30%, rgb(0,100,100) 70%);
-	font-weight:bolder;
-	font-size:12px;
-	color:#FFF;
-	border-radius:4px;
-	float:left;
-}
-
-#dimensions .minus:hover, .plus:hover {
-	cursor:pointer;
-	background-image: -moz-linear-gradient(bottom, rgb(40,160,0) 30%,rgb(5,180,25) 70%);
-	opacity:1;
-}
-
-#markwidth {
-	padding:0 0 0 5px;
-	float:left;
-}
-
-#dimensions select {
-	width:70px;
-	text-align:center;
-	float:left;
-}
-
-#dimensions .type {
-	padding:0 5px;
-	float:left;
-}
-
-#dimensions .currentdim {
-	width:150px;
-	padding:3px 0 0 0;
-	text-align:left;
-	float:left;
-	font-size:12px;
-}
-
-/**************
- *	Background
- **************/
-
-#mystyle {
-	font-size: 12px;
-	float: left;
-	display: table;
-}
-
-#preview{
-	width: 100%;
-	height: 150px;
-	
-	border: dashed 2px #999;
-
-	font-size: 20px;
+#load_img {
 	cursor: pointer;
-	display: table-cell;
-	vertical-align: middle;
-	float:left
+	background-size: contain;
+	float: left;
+	
 }
 
-#resetbackground {
+#preview {
+	height: 0px;
 	width: 100%;
 	float: left;
+	-moz-transition: height 1s ease 0.5s; 
 }
 
-#browse {
+#browse_img {
 	display:none;
 }
 
+/* ==================================================================================================== */
+/* ==================================================================================================== */
 
 /**************
  *	About Addon
  **************/
  
-#about {
-	margin:0 auto;
-	float:left;
+#credits a {
+	color: #FFF;
+	text-decoration: none;
+	display: block;
 }
 
-/******************
- *	Mouse Actions
- ******************/
- 
-#mouse {
-	font-size:12px;
+
+#edge {
+	
 }
 
-#mouse .line {
-	width:100%;
-	height:20px;
-	margin:5px 0;
-	float:left;
-}
 
-#mouse .button {
-	width:100px;
-	padding:3px 0 0 0;
-	float:left;
-	color:#369;
-	font-weight:bold;	
-}
-
-#mouse select {
-	width:100px;
-	padding:2px 2px 2px 5px;
-	color:#FFF;
-	font-size:11px;
-	background-image: -moz-linear-gradient(bottom, rgb(130,130,130) 30%, rgb(180,180,180) 70%);
-	border:none;
-	border-radius:2px;
-}
-
-#mouse option {
-	color:#444;
-	padding:0 0 0 5px;
-}
-
-/*******************
- *	Save Settings
- *******************/
-#apply {
-	margin:0 0 5px 0;
-}
