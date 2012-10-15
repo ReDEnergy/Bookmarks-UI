@@ -151,10 +151,7 @@ body {
 
 #container .cell {
 	width: 100%;
-	
 	font-size: 16px;
-	overflow: hidden;
-
 	-moz-box-sizing: border-box;
 }
 
@@ -168,9 +165,6 @@ body {
 	padding: 4px 0;
 	margin: 0 0 5px 0;
 
-	
-	background: -moz-linear-gradient(top, #9e9e9e 0%, #747474 100%);
-	background: -moz-linear-gradient(top, #8d8d8d 0%, #525252 100%);
 	background: #747474;
 
 	color: #FFF;
@@ -181,9 +175,7 @@ body {
 }
 
 #container .state:hover {
-	background: -moz-linear-gradient(top, #8d8d8d 0%, #525252 100%);
 	background: #525252;
-	
 } 
 
 
@@ -204,7 +196,7 @@ body {
 	float: left;
 
 	-moz-box-sizing: border-box;
-	-moz-transition: opacity 0.3s;
+	transition: all 0.3s;
 	opacity: 0.6;
 
 }
@@ -240,7 +232,7 @@ body {
 	height: 100%;
 	padding: 4px 0;
 
-	border-right: 2px solid rgba(255, 255, 255, 0.8);
+	border-right: 1px solid rgba(255, 255, 255, 0.8);
 	float: left;
 
 	-moz-box-sizing: border-box;
@@ -266,6 +258,48 @@ body {
 	background-color: #208B20;	
 }
 
+.dropdown {
+	width: 210px;
+	margin: 0 0 0 5px;
+	padding: 5px;
+
+	border: 5px solid #3490D2;
+	background: #666;
+	background-color: #EBF1F5;
+	background-image: url(../images/grain.png);
+	background-repeat: repeat;
+	color: #000;
+
+	position: relative;
+	top:-30px;
+	left:100%;
+	z-index: 10;
+
+	overflow:auto;
+	opacity: 0;
+	visibility: hidden;
+
+	transition: all 0.3s;
+
+}
+
+.dropdown > div {
+	width: 30px;
+	height: 30px;
+	padding: 5px 0; 
+	float: left;
+	font-weight: bold;
+
+	-moz-box-sizing: border-box;
+}
+
+.dropdown > div:hover {
+	background:#3490D2;
+	color:#FFF;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
 
 /* ==================================================================================================== */
 /* ==================================================================================================== */
@@ -279,9 +313,6 @@ body {
 	width: 100%;
 	float: left;
 	color: #FFF;
-	font-size: 16px;
-	overflow: hidden;
-	display: table;
 }
 
 /***********************
@@ -311,8 +342,8 @@ body {
 }
 
 #specialkey > div:nth-child(2) {
-	border-left: 2px solid rgba(255, 255, 255, 0.8);
-	border-right: 2px solid rgba(255, 255, 255, 0.8);
+	border-left: 1px solid rgba(255, 255, 255, 0.8);
+	border-right: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 
@@ -375,7 +406,7 @@ body {
 	height: 0px;
 	width: 100%;
 	float: left;
-	-moz-transition: height 1s ease 0.5s; 
+	transition: height 1s ease 0.5s; 
 }
 
 #browse_img {
