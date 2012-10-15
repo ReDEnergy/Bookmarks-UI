@@ -1,5 +1,79 @@
 // JavaScript Document
 
+var x = document.getElementById("");
+
+// x.removeAttribute("style");
+
+window.onload = function () {
+	LoadBackground.load();
+
+	DropDown.dropkey = document.getElementById("dropKey");
+	DropDown.keyletter = document.getElementById("keyletter");
+	DropDown.keyletter.onclick = function () {
+		if (DropDown.dropkey.style.length === 0)
+	  		DropDown.dropkey.style.visibility = "visible";
+		else
+			DropDown.dropkey.removeAttribute("style");
+	}
+}
+
+
+var DropDown = {
+	dropkey : null,
+	keyletter: null,
+}
+
+
+var LoadBackground = function() {
+	
+	var _load_img;
+	var _preview;
+	var _upload;
+	var _image;
+
+	function listen() {
+		_load_img = document.getElementById("load_img");
+		_preview = document.getElementById("preview");
+		_upload = document.getElementById("browse_img");
+		
+		_load_img.onclick = getImage; 
+	}
+	
+	function getImage() {
+		_upload.click();
+		_upload.onchange = function (e) {
+			
+			e.preventDefault();
+			
+			var file = _upload.files[0];
+			
+			if ( file.type.slice(0,5) == 'image' ) {
+				
+				var reader = new FileReader();
+				
+				reader.onload = function (event) {
+					_preview.style.background = 'url(' + event.target.result + ') center no-repeat';
+					_preview.style.backgroundSize = 'contain';
+					_preview.style.height = 200 + 'px';
+					_image = event.target.result;
+				};
+	
+				reader.readAsDataURL(file);
+			}
+			
+			return false;
+		};
+		
+	}
+	
+	return {
+		load : listen
+	}
+	
+}();
+
+
+
 
 /*
 	
@@ -89,59 +163,6 @@
 /*******************
  *	Panel Background
  *******************/	
-
-window.onload = function () {
-	LoadBackground.load();	
-}
-
-
-var LoadBackground = function() {
-	
-	var _load_img;
-	var _preview;
-	var _upload;
-	var _image;
-
-	function listen() {
-		_load_img = document.getElementById("load_img");
-		_preview = document.getElementById("preview");
-		_upload = document.getElementById("browse_img");
-		
-		_load_img.onclick = getImage; 
-	}
-	
-	function getImage() {
-		_upload.click();
-		_upload.onchange = function (e) {
-			
-			e.preventDefault();
-			
-			var file = _upload.files[0];
-			
-			if ( file.type.slice(0,5) == 'image' ) {
-				
-				var reader = new FileReader();
-				
-				reader.onload = function (event) {
-					_preview.style.background = 'url(' + event.target.result + ') center no-repeat';
-					_preview.style.backgroundSize = 'contain';
-					_preview.style.height = 200 + 'px';
-					_image = event.target.result;
-				};
-	
-				reader.readAsDataURL(file);
-			}
-			
-			return false;
-		};
-		
-	}
-	
-	return {
-		load : listen
-	}
-	
-}();
 
 
 
