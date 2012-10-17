@@ -258,12 +258,20 @@ body {
 	background-color: #208B20;	
 }
 
+<<<<<<< HEAD
 .dropdown {
+=======
+#container .dropdown {
+>>>>>>> 0cf11ec5dd91c05e1ca00738831e7d4c7c17dd41
 	width: 210px;
 	margin: 0 0 0 5px;
 	padding: 5px;
 
+<<<<<<< HEAD
 	border: 5px solid #3490D2;
+=======
+	border: 5px solid #747474;
+>>>>>>> 0cf11ec5dd91c05e1ca00738831e7d4c7c17dd41
 	background: #666;
 	background-color: #EBF1F5;
 	background-image: url(../images/grain.png);
@@ -276,6 +284,7 @@ body {
 	z-index: 10;
 
 	overflow:auto;
+<<<<<<< HEAD
 	opacity: 0;
 	visibility: hidden;
 
@@ -284,6 +293,13 @@ body {
 }
 
 .dropdown > div {
+=======
+	visibility:hidden;
+
+}
+
+.selectlist .dropdown > div {
+>>>>>>> 0cf11ec5dd91c05e1ca00738831e7d4c7c17dd41
 	width: 30px;
 	height: 30px;
 	padding: 5px 0; 
@@ -291,10 +307,18 @@ body {
 	font-weight: bold;
 
 	-moz-box-sizing: border-box;
+<<<<<<< HEAD
 }
 
 .dropdown > div:hover {
 	background:#3490D2;
+=======
+	
+}
+
+.selectlist .dropdown > div:hover {
+	background:#747474;
+>>>>>>> 0cf11ec5dd91c05e1ca00738831e7d4c7c17dd41
 	color:#FFF;
 	border-radius: 2px;
 	cursor: pointer;

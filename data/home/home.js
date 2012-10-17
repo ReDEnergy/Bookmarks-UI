@@ -1,5 +1,6 @@
 // JavaScript Document
 
+<<<<<<< HEAD
 'use strict';
  
 var x = document.getElementById("");
@@ -153,6 +154,30 @@ var DropDown = function () {
 */
 
 
+=======
+var x = document.getElementById("");
+
+// x.removeAttribute("style");
+
+window.onload = function () {
+	LoadBackground.load();
+
+	DropDown.dropkey = document.getElementById("dropKey");
+	DropDown.keyletter = document.getElementById("keyletter");
+	DropDown.keyletter.onclick = function () {
+		if (DropDown.dropkey.style.length === 0)
+	  		DropDown.dropkey.style.visibility = "visible";
+		else
+			DropDown.dropkey.removeAttribute("style");
+	}
+}
+
+
+var DropDown = {
+	dropkey : null,
+	keyletter: null,
+}
+>>>>>>> 0cf11ec5dd91c05e1ca00738831e7d4c7c17dd41
 
 
 var LoadBackground = function() {
