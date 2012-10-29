@@ -12,147 +12,116 @@
 	
 	<div id="wrapper">
 
-	<!-- Identity -->
-	<div id="identity"> 
-		<div class="logo"></div>
-		<div class="title"></div>
-	</div>
+		<!-- Identity -->
+		<div id="identity"> 
+			<div class="logo"></div>
+			<div class="title"></div>
+		</div>
+		
+		<div id="container">
+			<!-- HotKeys -->
+			<div class="box">
+				<div class="title">
+					Hotkeys
+				</div>
+				<div class="cell">			
+					<div id="hotkeys">
+						<div id="HK_state" class="state"> Enable </div>
 	
-	<div id="container">
-		<!-- HotKeys -->
-		<div class="box">
-			<div class="title">
-				Hotkeys
-			</div>
-			<div class="cell">			
-				<div id="hotkeys">
-					<div id="HK_state" class="state"> Enable </div>
-
-					<div class="selectlist">
-						<div class="info"> Keyboard Key </div>
-						<div class="drop" id="keyletter"> Q </div>
-<<<<<<< HEAD
-						<div class="dropdown" id="dropKey"></div>
-=======
-						<div class="dropdown" id="dropKey">
-							<div>A</div>
-							<div>B</div>
-							<div>C</div>
-							<div>D</div>
-							<div>E</div>
-							<div>F</div>
-							<div>G</div>
-							<div>H</div>
-							<div>I</div>
-							<div>J</div>
-							<div>K</div>
-							<div>L</div>
-							<div>M</div>
-							<div>N</div>
-							<div>O</div>
-							<div>P</div>
-							<div>Q</div>
-							<div>R</div>
-							<div>S</div>
-							<div>T</div>
-							<div>U</div>
-							<div>V</div>
-							<div>W</div>
-							<div>X</div>
-							<div>Y</div>
-							<div>Z</div>
+						<div class="selectlist">
+							<div class="info"> Keyboard Key </div>
+							<div class="drop" id="keyletter"> Q </div>
+							<div class="dropdown" id="dropKey"></div>
 						</div>
->>>>>>> 0cf11ec5dd91c05e1ca00738831e7d4c7c17dd41
+	
+						<div id="specialkey">
+							<div class="hkey_use" val='1' > Ctrl </div>  
+							<div val='2' > Alt </div>
+							<div val='4' > Shift </div>
+						</div>
+			
+						<div id="resetkeys" class="reset" > Default </div> 
 					</div>
-
-					<div id="specialkey">
-						<div class="hkey_use" val='1' > Ctrl </div>  
-						<div val='2' > Alt </div>
-						<div val='4' > Shift </div>
+				</div>
+			</div>
+	
+			
+	
+			<!-- Mouse Actions -->
+			<div class="box">
+				<div class="title"> 
+					Mouse Actions 
+				</div>
+				<div class="cell">			
+					<div id="mouse"> 
+						<div class="selectlist">
+							<div class="info"> Left click </div>
+							<div class="drop" id="L_click_action"> Same tab </div>	
+						</div>
+	
+						<div class="selectlist">
+							<div class="info"> Middle click	</div>
+							<div class="drop" id="M_click_action"> New tab </div>	
+						</div>
+						
+						<div class="selectlist">
+							<div class="info"> Right click </div>
+							<div class="drop" id="R_click_action"> None </div>	
+						</div>
+	
+						<div id="resetmouse" class="reset"> Default </div>
 					</div>
-		
-					<div id="resetkeys" class="reset" > Default </div> 
+				</div>
+			</div>
+	
+			<!-- Dimensions -->
+			<div class="box">
+				<div class="title">
+					Panel Dimensions 
+				</div>
+				<div class="cell">			
+					<div id="dimensions">
+						<div class="selectlist">
+							<div class="info"> Height </div>
+							<div class="drop" id="P_height"> 400 </div>	
+						</div>
+	
+						<div class="selectlist">
+							<div class="info"> Columns </div>
+							<div class="drop" id="P_columns"> 4 </div>	
+						</div>
+	
+						<div id="resetdims" class="reset" > Default </div>
+					</div>
+				</div>
+			</div>
+	
+			<!-- About -->
+			<div class="box">		
+				<div class="title"> About </div>
+				<div class="cell">
+					<div id="credits">			
+						<div class="state"> Version 1.5.1 </div>
+						<div class="state"> Homepage </div>
+						<div class="state" style="margin: 0;">
+							<a href="mailto:gabriel.ivanica@gmail.com?Subject=Feedback%20-%20Bookmarks%20UI%20"> Feedback </a>
+						</div>
+					</div>			
+				</div>
+			</div>
+	
+			<!-- Background Image -->
+			<div class="box">
+				<div class="title"> Background </div>
+				<div class="cell">
+					<div id="load_img" class="state"> Click to load an image </div>
+					<div id="preview"> </div>
+					<div id="resetbackground" class="reset"> Default </div>
+					<input id="browse_img" type="file"/>
 				</div>
 			</div>
 		</div>
-
-		
-
-		<!-- Mouse Actions -->
-		<div class="box">
-			<div class="title"> 
-				Mouse Actions 
-			</div>
-			<div class="cell">			
-				<div id="mouse"> 
-					<div class="selectlist">
-						<div class="info"> Left click </div>
-						<div class="drop" id="L_click_action"> Same tab </div>	
-					</div>
-
-					<div class="selectlist">
-						<div class="info"> Middle click	</div>
-						<div class="drop" id="M_click_action"> New tab </div>	
-					</div>
-					
-					<div class="selectlist">
-						<div class="info"> Right click </div>
-						<div class="drop" id="R_click_action"> None </div>	
-					</div>
-
-					<div id="resetmouse" class="reset"> Default </div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Dimensions -->
-		<div class="box">
-			<div class="title">
-				Panel Dimensions 
-			</div>
-			<div class="cell">			
-				<div id="dimensions">
-					<div class="selectlist">
-						<div class="info"> Height </div>
-						<div class="drop" id="P_height"> 400 </div>	
-					</div>
-
-					<div class="selectlist">
-						<div class="info"> Columns </div>
-						<div class="drop" id="P_columns"> 4 </div>	
-					</div>
-
-					<div id="resetdims" class="reset" > Default </div>
-				</div>
-			</div>
-		</div>
-
-		<!-- About -->
-		<div class="box">		
-			<div class="title"> About </div>
-			<div class="cell">
-				<div id="credits">			
-					<div class="state"> Version 1.5.1 </div>
-					<div class="state"> Homepage </div>
-					<div class="state" style="margin: 0;">
-						<a href="mailto:gabriel.ivanica@gmail.com?Subject=Feedback%20-%20Bookmarks%20UI%20"> Feedback </a>
-					</div>
-				</div>			
-			</div>
-		</div>
-
-		<!-- Background Image -->
-		<div class="box">
-			<div class="title"> Background </div>
-			<div class="cell">
-				<div id="load_img" class="state"> Click to load an image </div>
-				<div id="preview"> </div>
-				<div id="resetbackground" class="reset"> Default </div>
-				<input id="browse_img" type="file"/>
-			</div>
-		</div>
-
-	</div>
+	</div>	
 </body>
 </html>
 

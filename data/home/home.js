@@ -1,6 +1,5 @@
 // JavaScript Document
 
-<<<<<<< HEAD
 'use strict';
  
 var x = document.getElementById("");
@@ -84,102 +83,6 @@ function DropDown(selectId, dropmenuId, options) {
 
 
 
-
-
-
-
-
-
-
-
-
-/*
-var DropDown = function () {
-	
-	var dropmenu;
-	var select;
-	var	value;
-	var optionvalue;
-	
-	var toggle = function () {
-		dropmenu.style.opacity = 1 - parseInt(dropmenu.style.opacity);
-	}
-	
-	var changeKey = function (e) {
-		if (e.target.className !== "dropdown") {
-			optionvalue = parseInt(e.target.getAttribute("value"));
-			if (optionvalue >= 0 && optionvalue < 26) {
-				value = String.fromCharCode(optionvalue + 65);
-				select.textContent = value;
-			}
-			toggle();
-		}
-	}
-	
-	var appendOptions = function () {
-		for (i=0; i<26; i++) {
-			var option = document.createElement('div');
-			option.textContent = String.fromCharCode(65 + i);
-			option.setAttribute('value', i);
-			dropmenu.appendChild(option);		
-		}
-	}
-
-	// Public
-
-	var init = function () {
-		
-		dropmenu = document.getElementById("dropKey");
-		select = document.getElementById("keyletter");
-
-		select.onclick = toggle;
-		dropmenu.onclick = changeKey;
-		dropmenu.style.opacity = 0;
-		
-		appendOptions();
-	}
-	
-	var clickOut = function (e) {
-		if (parseInt(dropmenu.style.opacity) === 1 && (e.target !== select)==true)
-			toggle();
-	}
-	
-	
-	return {
-		load : init,
-		close : clickOut
-	}
-	
-}();
-*/
-
-
-=======
-var x = document.getElementById("");
-
-// x.removeAttribute("style");
-
-window.onload = function () {
-	LoadBackground.load();
-
-	DropDown.dropkey = document.getElementById("dropKey");
-	DropDown.keyletter = document.getElementById("keyletter");
-	DropDown.keyletter.onclick = function () {
-		if (DropDown.dropkey.style.length === 0)
-	  		DropDown.dropkey.style.visibility = "visible";
-		else
-			DropDown.dropkey.removeAttribute("style");
-	}
-}
-
-
-var DropDown = {
-	dropkey : null,
-	keyletter: null,
-}
->>>>>>> 0cf11ec5dd91c05e1ca00738831e7d4c7c17dd41
-
-
 var LoadBackground = function() {
 	
 	var _load_img;
@@ -227,8 +130,6 @@ var LoadBackground = function() {
 	}
 	
 }();
-
-
 
 
 /*
