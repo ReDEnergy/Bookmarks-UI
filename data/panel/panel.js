@@ -47,9 +47,6 @@ function Element(Mark, position) {
 document.addEventListener('click' , function (e) {
 	var target = e.target;
 	
-	// console.log("Click target: " + target.id);
-	// console.log("Target className: " + target.className);
-	
 	// *	Open Addon Settings Page
 	
 	if (target.className == 'settings') { 
@@ -121,8 +118,6 @@ var Events = {
 // **********************************************************************************
 // *	Addon Communication	
 
-
-// *	Receive Bookmarks
 self.port.on("loadMarks", function (marks) {
 	Bookmark.root.textContent = ''; 
 	for (var i in marks) {
@@ -131,22 +126,13 @@ self.port.on("loadMarks", function (marks) {
 	}
 });
 
-
-// *	Receive Panel Settings
-self.port.on ("newPref", function (Pref) {
-	Bookmark.root.style.height = Pref.height - 85 + 'px';
-	
-	// *	Background
-	switch (Pref.image) {
-		case 'default':
-			document.body.removeAttribute('style');
-			break;
-			
-		case 'same':
-			break;
-			
-		default:
-			document.body.style.background = 'url('+Pref.image+') center no-repeat';
-	}
+self.port.on("panel height", function(value) {
+	Bookmark.root.style.height = value - 80 + 'px';	
 });
 
+self.port.on("panel image", function(img) {
+	if (img === "default")
+		document.body.removeAttribute('style');
+	else
+		document.body.style.background = 'url('+img+') center no-repeat';
+});

@@ -1,6 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 
+/*
+
 @font-face {
     font-family: "Open Sans";
     font-style: normal;
@@ -29,6 +31,7 @@
     src: url("./fonts/OpenSans-Italic-webfont.ttf") format("truetype");
 }
 
+*/
 
 /*
  	Theme Colors
@@ -62,13 +65,11 @@ body {
 	cursor: default;
 
 	-moz-user-select: none;
-	
 }
 
 #wrapper {
 	width: 1000px;
 	margin: 0 auto;
-	overflow: auto;
 }
 
 /* ==================================================================================================== */
@@ -109,6 +110,18 @@ body {
 	overflow: hidden;
 }
 
+
+#identity .save {
+	font-size: 16px;
+	color: #359740;
+	font-weight: bold;
+	opacity: 0;
+	
+	transition-property: opacity;
+	transition-duration: 1s;
+}
+
+
 /* ==================================================================================================== */
 /* ==================================================================================================== */
 /* ==================================================================================================== */
@@ -119,22 +132,20 @@ body {
  *******************/
 
 #container {
-	width:900px;
-	margin:30px auto;
+	width:500px;
+	margin:10px auto;
 	color: #333;
 	text-align: center;
-	overflow:auto;
+	float: left;
 }
 
 #container .box {
-	width: 410px;
+	width: 80%;
 	height: auto;
-	margin: 20px;
+	margin: 20px auto;
 	border: 5px solid rgba(255, 255, 255, 0.8);
 	display: table;
 	
-	float: left;
-
 	-moz-box-sizing: border-box;
 }
 
@@ -159,7 +170,8 @@ body {
  *	Disable Option 
  *******************/
 
-#container .state {
+#container .state,
+#container .disabled {
 	width: 100%;
 	height: 30px;
 	padding: 4px 0;
@@ -175,8 +187,27 @@ body {
 }
 
 #container .state:hover {
+    cursor: pointer;
 	background: #525252;
-} 
+}
+
+#container .disabled {
+	padding: 10px 20px 10px 0;
+	height: 40px;
+	margin: 0;
+	background-image: url("../images/blue-arrow.png"), -moz-linear-gradient(top, #43A6E1 0%, #257BC2 100%);
+	background-position: center right 60px, center center;
+	background-repeat: no-repeat;
+	
+	transition-property: padding-right, background-position;
+	transition-duration: 1s;
+}
+
+#container .disabled:hover {
+	padding: 10px 0;
+	background-position: center right 10px, center center;
+    cursor: pointer;
+}
 
 
 /*******************
@@ -190,7 +221,6 @@ body {
 
 	background: -moz-linear-gradient(top, #43A6E1 0%, #257BC2 100%);
 	font-size: 13px;
-	font-weight: bold;
 	color: #FFF;
 
 	float: left;
@@ -271,7 +301,7 @@ body {
 	color: #000;
 
 	position: relative;
-	top:-30px;
+	top:-40px;
 	left:100%;
 	z-index: 10;
 
@@ -288,7 +318,6 @@ body {
 	height: 30px;
 	padding: 5px 0; 
 	float: left;
-	font-weight: bold;
 
 	-moz-box-sizing: border-box;
 }
@@ -309,9 +338,16 @@ body {
  *******************/
 
 #hotkeys {
-	width: 100%;
-	float: left;
 	color: #FFF;
+	
+	height: 40px;
+	
+	transition-property: height;
+	transition-duration: 1s;
+}
+
+#kstate {
+	height: 100px;
 }
 
 /***********************
@@ -348,11 +384,11 @@ body {
 
 #specialkey > div:hover {
 	cursor: pointer;
-	background-color: #359740;
+//	background-color: #359740;
 }
 
 #hotkeys .hkey_use {
-	background-color: #359740;
+	background-color: #208B20;
 }
 
 
@@ -378,6 +414,15 @@ body {
 	width: 50%;
 }
 
+#mouse .dropdown {
+	top:-70px;
+	width: 100px;
+}
+
+#mouse .dropdown > div {
+	width: 100px;
+}
+
 
 /* ==================================================================================================== */
 /* ==================================================================================================== */
@@ -386,6 +431,29 @@ body {
 /*******************
  *	Panel Dimensions
  *******************/
+
+#dimensions .info {
+	width: 60%;
+}
+
+#dimensions .drop {
+	width: 40%;
+}
+
+#dimensions .selectlist:first-child .dropdown {
+	width: 100px;
+	height: 150px;
+	overflow: auto;
+}
+
+#dimensions .selectlist:first-child .dropdown > div {
+	width: 100%;
+}
+
+#dimensions .selectlist:nth-child(2) .dropdown {
+	top: -70px;
+	width: 30px;
+}
 
 /* ==================================================================================================== */
 /* ==================================================================================================== */

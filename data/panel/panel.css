@@ -1,6 +1,6 @@
 body {
 	margin: 0 auto;
-	background-image: url(../images/whitey.png);
+	background-image: url("../images/whitey.png");
 	font-family: "Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
 	-moz-user-select: none;
 	overflow: hidden;
@@ -19,25 +19,27 @@ body {
 
 #nav {
 	width: 100%;
-	height: 35px;
+	height: 40px;
 	margin: 0 auto;
 	color: #FFF;
 	font-size: 14px;
 	background: rgba(0,0,0,0.5);
-	display: table;
 	float: left;
+	position: relative;
 }
 
 #nav .path {
 	width: 100%;
-	padding: 0 50px;
-	height: inherit;
+	height: 100%;
+	padding: 10px 50px;
 	text-align: center;
-	display: table-cell;
-	vertical-align: middle;
+
 	white-space: nowrap;
 	word-wrap: break-word;
 	overflow: hidden;
+	position: absolute;
+	
+	-moz-box-sizing: border-box;	
 }
 
 #nav .path:hover {
@@ -47,13 +49,16 @@ body {
 
 #nav .back {
 	width: 40px;
-	height: inherit;
+	height: 100%;
+
+	background: url("../images/back.png") no-repeat left;
+	border-right: 1px solid rgba(255,255,255,0.2);
+	border-left: 1px solid rgba(255,255,255,0.2);
+
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	background: url(../images/back.png) no-repeat left;
-	border-right: 1px solid rgba(255,255,255,0.2);
-	border-left: 1px solid rgba(255,255,255,0.2);
+
 	display: none;
 }
 
@@ -61,6 +66,42 @@ body {
 	background-position: right;
 	cursor: pointer;
 }
+
+
+#nav .settings {
+	width: 40px;
+	height: 100%;
+
+	background: url("../images/settings.png") no-repeat center;
+	
+	opacity: 0.5;
+
+	position: absolute;
+	right: 0px;
+
+	-moz-transition-property: margin, opacity, -moz-transform;
+	-moz-transition-duration: 0.5s;
+}
+
+#nav .settings:hover {
+	opacity: 1;
+	cursor: pointer;
+
+    -moz-animation-name: rotate;
+    -moz-animation-duration: 2s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+}
+
+@-moz-keyframes rotate {
+    from {
+    	-moz-transform: rotate(0deg);
+    }
+    to {
+    	-moz-transform: rotate(360deg);
+    }
+}
+
 
 /*****************
  *	Bookmark panel
@@ -102,7 +143,7 @@ body {
 	height: inherit;
 	padding: 0;
 	background: rgba(255, 255, 255, 0.3);
-	background-image: url(../images/fav.png);
+	background-image: url("../images/fav.png");
 	background-position: center;
 	background-size: 16px 16px;
 	background-repeat: no-repeat;
@@ -110,11 +151,11 @@ body {
 }
 
 #marks .fav_query {
-	background-image: url(../images/query.png);
+	background-image: url("../images/query.png");
 }
 
 #marks .fav_folder {
-	background-image: url(../images/folder.png);
+	background-image: url("../images/folder.png");
 }
 
 
@@ -138,36 +179,3 @@ body {
 	float: left;
 }
 
-/*********************
- *	Configuration page
- *********************/
-#config {
-	width: 100%;
-	height: 30px;
-	color: #FFF;
-	font-size: 9px;
-	font-weight: bold;
-	text-align: center;
-	overflow: hidden;
-	position: absolute;
-	bottom: 0px;
-}
-
-#config > div {
-	width: 100px;
-	height: 16px;
-	background: #C00;
-	margin: 14px auto;
-	background: rgba(0, 0, 0, 0.5);
-	opacity: 0.5;
-
-	-moz-transition-property: margin, padding, opacity;
-	-moz-transition-duration: 0.5s;
-}
-
-#config > div:hover {
-	margin: 0 auto;
-	opacity: 1;
-	padding: 2px 0 12px 0;
-	cursor: pointer;
-}
