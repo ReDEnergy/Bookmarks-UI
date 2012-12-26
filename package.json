@@ -3,10 +3,12 @@
     "id": "jid1-kSjMjr3RkZSqKA", 
     "fullName": "Bookmarks UI", 
     "description": "Access your favourite bookmarks easy and fast with Bookmarks UI",
+	
+	"icon" : "data/images/icon48.png",
+	"icon64" : "data/images/icon64.png",
 
     "license": "GPL 3.0", 
     "version": "1.6.0",
 
-    "author": "Gabriel Ivanica",
-    "homepage": "http://www.developertek.com/"
+    "author": "Gabriel Ivanica"
 }
