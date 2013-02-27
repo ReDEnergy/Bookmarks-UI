@@ -1,13 +1,14 @@
 {
     "name": "bookmarks-ui",
     "id": "jid1-kSjMjr3RkZSqKA", 
-    "fullName": "Bookmarks UI", 
+    "fullName": "Bookmarks UI",
     "description": "Access your favourite bookmarks easy and fast with Bookmarks UI",
+	"homepage": "http://www.gabrielivanica.com/",
 	
 	"icon" : "data/images/icon48.png",
 	"icon64" : "data/images/icon64.png",
 
-    "license": "GPL 3.0", 
+    "license": "LGPL 3.0", 
     "version": "1.6.1",
 
     "author": "Gabriel Ivanica"
