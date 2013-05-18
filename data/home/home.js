@@ -7,10 +7,10 @@
 var Preferences = { };
 
 var Elements = {
-	
+
 	save : null,
 	timeout : null,
-	
+
 	SKEY : [],
 	MOUSEKEY : [],
 	MouseButton : [],
@@ -23,10 +23,10 @@ var Elements = {
 
 		for (var i=0; i<3; i++)
 			this.MouseButton[i] = new MouseActions(i);
-	
+
 		this.HotkeyPower = document.getElementById("hotkeys");
 		this.HotkeyState = document.getElementById("kstate");
-	
+
 		this.SKEY[1] = document.getElementById("kctrl");
 		this.SKEY[2] = document.getElementById("kalt");
 		this.SKEY[3] = document.getElementById("kshift");
@@ -37,33 +37,33 @@ var Elements = {
 		this.MOUSEKEY[0] = new DropDown("mouseL", "mouse_drop_L", this.MouseButton[0]);
 		this.MOUSEKEY[1] = new DropDown("mouseM", "mouse_drop_M", this.MouseButton[1]);
 		this.MOUSEKEY[2] = new DropDown("mouseR", "mouse_drop_R", this.MouseButton[2]);
-		
+
 		this.PanelSizeH = new DropDown("panelH", "panelH_drop", PanelHeight);
 		this.PanelSizeC = new DropDown("panelC", "panelC_drop", PanelColumns);
 
 	},
-	
+
 	updateSettings : function() {
-		
+
 		this.SKEY[0].setValue(Preferences.combo[0]);
-		
+
 		this.updateHotKey(Preferences.hotkey);
 
 		for (var i=1; i<4; i++)
 			this.updateCombo(this.SKEY[i], Preferences.combo[i]);
-		
+
 		for (var i=0; i<3; i++)
 			this.MOUSEKEY[i].setValue(this.MouseButton[i].values[Preferences.mouse[i]]);
-		
+
 		this.PanelSizeH.setValue(Preferences.height + ' px');
 		this.PanelSizeC.setValue(Preferences.columns);
 		this.Version.textContent += Preferences.version;
 	},
-	
+
 	updateCombo : function(OBJ, value) {
 		value == 1 ? OBJ.className="hkey_use" : OBJ.className='';
 	},
-	
+
 	setDisplay : function (value) {
 		var elem = this.HotkeyState;
 		while (elem.nextElementSibling) {
@@ -71,7 +71,7 @@ var Elements = {
 			elem.style.display = value;
 		}
 	},
-	
+
 	updateHotKey : function (value) {
 		if (value == 0) {
 			this.HotkeyState.className = 'disabled';
@@ -82,9 +82,9 @@ var Elements = {
 			this.HotkeyState.className = 'state';
 			this.HotkeyState.textContent = 'Disable';
 			this.setDisplay('inline');
-		}		
+		}
 	}
-	
+
 }
 
 function DropDown(selectId, dropmenuId, options) {
@@ -93,14 +93,14 @@ function DropDown(selectId, dropmenuId, options) {
 	var select = document.getElementById(selectId);
 	var state  = 0;
 	var time = 0;
-	
+
 	var toggle = function () {
-		
+
 		state = 1 ^ state;
 
 		dropmenu.style.opacity = state;
 		dropmenu.style.visibility = visbility[state];
-		
+
 	}
 
 	var clickOut = function (e) {
@@ -114,10 +114,10 @@ function DropDown(selectId, dropmenuId, options) {
 	}
 
 	var update = function (e) {
-		
+
 		if (Date.now() - time < 500)
 			return;
-		
+
 		if (e.target.className !== "dropdown") {
 			options.getValue(e);
 			toggle();
@@ -125,15 +125,15 @@ function DropDown(selectId, dropmenuId, options) {
 
 		time = Date.now();
 	}
-	
+
 	options.appendOptions(dropmenu);
-	
+
 	select.onclick = toggle;
 
 	dropmenu.onclick = update;
 
 	document.addEventListener('click', clickOut);
-	
+
 	return {
 		setValue : function (value) {
 			select.textContent = value;
@@ -144,12 +144,12 @@ function DropDown(selectId, dropmenuId, options) {
 var HotKeysOptions = function () {
 	var value;
 	var optionvalue;
-	var nr_values = 26;	
-	
+	var nr_values = 26;
+
 	function update () {
 		self.port.emit("hotkey KEY", value);
 	}
-	
+
 	return {
 		getValue : function (e) {
 			optionvalue = parseInt(e.target.getAttribute("value"));
@@ -158,7 +158,7 @@ var HotKeysOptions = function () {
 				update();
 			}
 		},
-		
+
 		appendOptions : function (dropmenu) {
 			for (var i=0; i<nr_values; i++) {
 				var option = document.createElement('div');
@@ -184,9 +184,9 @@ MouseActions.prototype = function() {
 		if (value >= 0 && value < nr_values) {
 			self.port.emit("mouse button", {value : value, button: this.button});
 			return e.target.textContent;
-		}		
+		}
 	}
-	
+
 	function appendOptions (dropmenu) {
 		for (var i=0; i<nr_values; i++) {
 			var option = document.createElement('div');
@@ -195,7 +195,7 @@ MouseActions.prototype = function() {
 			dropmenu.appendChild(option);
 		}
 	}
-	
+
 	return {
 		getValue : getValue,
 		appendOptions : appendOptions,
@@ -206,27 +206,27 @@ MouseActions.prototype = function() {
 var PanelColumns = function () {
 	var value;
 	var optionvalue;
-	var nr_values = 5;
-	
+	var nr_values = 7;
+
 	function update () {
 		self.port.emit("panel columns", value);
 	}
-	
+
 	return {
 		getValue : function (e) {
 			optionvalue = parseInt(e.target.getAttribute("value"));
-			if (optionvalue > 0 && optionvalue < nr_values) {
+			if (optionvalue > 0 && optionvalue < nr_values + 2) {
 				value = optionvalue;
 				update();
 				return e.target.textContent;
 			}
 		},
-		
+
 		appendOptions : function (dropmenu) {
-			for (var i=2; i<nr_values; i++) {
+			for (var i=0; i<nr_values; i++) {
 				var option = document.createElement('div');
-				option.textContent = i;
-				option.setAttribute('value', i);
+				option.textContent = i + 2;
+				option.setAttribute('value', i + 2);
 				dropmenu.appendChild(option);
 			}
 		}
@@ -236,12 +236,12 @@ var PanelColumns = function () {
 var PanelHeight = function () {
 	var value;
 	var optionvalue;
-	var nr_values = 17;
-	
+	var nr_values = 25;
+
 	function update () {
 		self.port.emit("panel height", value * 25 + 200);
 	}
-	
+
 	return {
 		getValue : function (e) {
 			optionvalue = parseInt(e.target.getAttribute("value"));
@@ -251,7 +251,7 @@ var PanelHeight = function () {
 				return e.target.textContent;
 			}
 		},
-		
+
 		appendOptions : function (dropmenu) {
 			for (var i=0; i<nr_values; i++) {
 				var option = document.createElement('div');
@@ -264,71 +264,71 @@ var PanelHeight = function () {
 }();
 
 var BackgroundWorker = function() {
-	
+
 	var _load_img;
 	var _preview;
 	var _upload;
 	var _image;
 
 	function update() {
-		triggerSaved(1);		
+		triggerSaved(1);
 		self.port.emit("panel image", _image);
 	}
 
 	function clearPreview() {
 		_preview.removeAttribute('style');
-		self.port.emit("panel image reset", _image);				
+		self.port.emit("panel image reset", _image);
 	}
-	
+
 	function setImage(image) {
-		
+
 		if(image == 'default')
 			return;
-		
+
 		_preview.style.background = 'url(' + image + ') center no-repeat';
 		_preview.style.backgroundSize = 'contain';
-		_preview.style.height = 200 + 'px';		
+		_preview.style.height = 200 + 'px';
 	}
 
 	function listen() {
 		_load_img = document.getElementById("load_img");
 		_preview = document.getElementById("preview");
 		_upload = document.getElementById("browse_img");
-		
-		_load_img.onclick = getImage; 
+
+		_load_img.onclick = getImage;
 	}
-	
+
 	function getImage() {
 		_upload.click();
 		_upload.onchange = function (e) {
-			
+
 			e.preventDefault();
-			
+
 			var file = _upload.files[0];
-			
+
 			if ( file.type.slice(0,5) == 'image' ) {
-				
+
 				var reader = new FileReader();
-				
+
 				reader.onload = function (event) {
 					_image = event.target.result;
 					setImage(_image);
 					update();
 				};
-	
+
 				reader.readAsDataURL(file);
 			}
-			
+
 			return false;
 		};
 	}
-	
+
 	return {
 		init : listen,
 		reset : clearPreview,
 		setImage : setImage
 	}
-	
+
 }();
 
 /*
@@ -348,15 +348,15 @@ document.onclick = function (e) {
 	if (elem.id == "kstate") {
 		self.port.emit("hotkey switch");
 	}
-	
+
 	if (elem.parentNode.id == "specialkey") {
 		self.port.emit("specialkey switch", elem.getAttribute('value'));
 	}
-	
+
 	if (elem.id == "resetkeys") {
 		self.port.emit("hotkey reset");
 	}
-	
+
 	if (elem.id == "resetmouse") {
 		self.port.emit("mouse reset");
 	}
@@ -364,11 +364,11 @@ document.onclick = function (e) {
 	if (elem.id == "resetdims") {
 		self.port.emit("panel reset");
 	}
-	
+
 	if (elem.id == "resetbackground") {
 		BackgroundWorker.reset();
 		self.port.emit("image reset");
-		triggerSaved(1);		
+		triggerSaved(1);
 	}
 }
 
@@ -377,7 +377,7 @@ self.port.on ('loadAddonSettings', function (Pref) {
 	Preferences = Pref;
 	Elements.updateSettings();
 	BackgroundWorker.setImage(Pref.image);
-	
+
 });
 
 self.port.on("hotkey state", function (value) {
@@ -435,7 +435,7 @@ self.port.on("panel reset", function(obj) {
 function triggerSaved(value) {
 
 	clearTimeout(Elements.timeout);
-	
+
 	if (value == 1) {
 		Elements.save.style.opacity = 1;
 		Elements.timeout = setTimeout(triggerSaved, 1500, 0);
