@@ -10,7 +10,7 @@ Firefox Addon Page can be found [here](https://addons.mozilla.org/en-US/firefox/
 
 Developed by [Gabriel Ivanica](https://addons.mozilla.org/en-US/firefox/user/ReDEnergy/)
 
-### CHANGELOG
+## Changelog
 
 #### Version 1.6.1
 
