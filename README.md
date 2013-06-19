@@ -39,7 +39,7 @@ Developed by [Gabriel Ivanica](https://addons.mozilla.org/en-US/firefox/user/ReD
 
 	Added support for multi-level bookmarks
 
-	Adde mouse actions :
+	Added mouse actions :
 	- open link in current tab - left click
 	- open a link in new tab - middle/right click
 	- open all links in new tabs - middle/right click on the navigation bar (title bar)
