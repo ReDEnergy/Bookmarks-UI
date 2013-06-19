@@ -1,11 +1,13 @@
-================================================
-	Bookmarks UI - Firefox Addon
-================================================
 
-Interface for interacting with browser bookmarks
+## Bookmarks UI - Firefox Addon
+### Development Branch
 
-by Gabriel Ivanica
+Interface for interacting with browser bookmarks  
+Firefox Addon Page can be found [here](https://addons.mozilla.org/en-US/firefox/addon/bookmarks-ui/)
 
-Labs Folder:
-	* ideas under development
-	* tools and assets used		
+Developed by [Gabriel Ivanica](https://addons.mozilla.org/en-US/firefox/user/ReDEnergy/)
+
+
+
+	
+
