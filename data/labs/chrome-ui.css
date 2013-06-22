@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*
+ 	Theme Colors
+ 	
+ 		green		background-color: #359740;
+
+ 		blue		background: -moz-linear-gradient(top, #43A6E1 0%, #257BC2 100%);
+					background-color: #3490D2;
+
+ 		gray		background: -moz-linear-gradient(top, #9e9e9e 0%, #747474 100%);
+ 					background: -moz-linear-gradient(top, #8d8d8d 0%, #525252 100%);
+ */
+
+/***********
+ * Body Page
+ ***********/
+
+/*
+ * weird bug : defining top and 
+ */
+
+
+#red_chrome_xul {
+	width: 200px;
+	height: 150px;
+	color: #359740;
+	position: fixed;
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	background-position: center center; 
+	border: 1px solid #43A6E1;
+
+	/*transition-property: top, left;*/
+	/*transition-duration: 2s;*/
+}
+
+
+
