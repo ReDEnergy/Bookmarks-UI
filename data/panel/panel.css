@@ -1,7 +1,8 @@
 body {
 	margin: 0 auto;
 	background-image: url("../images/whitey.png");
-	font-family: "Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
+	font-family: "Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans", 
+				"Nimbus Sans L", sans-serif;
 	-moz-user-select: none;
 	overflow: hidden;
 	cursor: default;
@@ -39,7 +40,8 @@ body {
 	overflow: hidden;
 	position: absolute;
 	
-	-moz-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #nav .path:hover {
@@ -79,26 +81,27 @@ body {
 	position: absolute;
 	right: 0px;
 
-	-moz-transition-property: margin, opacity, -moz-transform;
-	-moz-transition-duration: 0.5s;
+	transition-property: opacity, transform;
+	transition-duration: 0.5s;
+	
 }
 
 #nav .settings:hover {
 	opacity: 1;
 	cursor: pointer;
 
-    -moz-animation-name: rotate;
-    -moz-animation-duration: 2s;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: linear;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 @-moz-keyframes rotate {
     from {
-    	-moz-transform: rotate(0deg);
+    	transform: rotate(0deg);
     }
     to {
-    	-moz-transform: rotate(360deg);
+    	transform: rotate(360deg);
     }
 }
 
