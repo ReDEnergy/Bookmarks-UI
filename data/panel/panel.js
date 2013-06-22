@@ -1,3 +1,5 @@
+'use strict';
+
 // *	Bookmarks rows
 
 var Bookmark = {
@@ -13,8 +15,7 @@ var Bookmark = {
 	}
 };
 
-/**************************************************************************************************************
- **************************************************************************************************************/
+// *****************************************************************************
 
 function Element(Mark, position) {
 	var box		= document.createElement('div');
@@ -50,7 +51,7 @@ document.addEventListener('click' , function (e) {
 	// *	Open Addon Settings Page
 	
 	if (target.className == 'settings') { 
-		self.port.emit ("open_homepage");
+		self.port.emit ("open_addon_page");
 		return;
 	}
 
@@ -78,10 +79,11 @@ document.addEventListener('click' , function (e) {
 		target = target.parentNode;
 
 	if (target.className == 'box') {
-		type = target.getAttribute('type');
-		id = target.getAttribute('id');
 		
-		if (type == 0) {
+		var type = target.hasAttribute('type') ? target.getAttribute('type') : null;
+		var id = target.hasAttribute('id') ? target.getAttribute('id') : null;
+		
+		if ((type | 0) === 0) {
 			self.port.emit("openURI", id, e.button);
 		}
 
@@ -115,7 +117,7 @@ var Events = {
 }
 
 
-// **********************************************************************************
+// *****************************************************************************
 // *	Addon Communication	
 
 self.port.on("loadMarks", function (marks) {
