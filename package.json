@@ -9,7 +9,15 @@
 	"icon64" : "data/images/icon64.png",
 
     "license": "LGPL 3.0", 
-    "version": "1.6.1",
 
-    "author": "Gabriel Ivanica"
+    "author": "Gabriel Ivanica",
+    
+	 "preferences": [
+		{
+			"type": "control",
+			"label": "Preferences",
+			"name": "open_addon_page",
+			"title": "Preferences"
+		}
+	]    
 }
