@@ -1,7 +1,8 @@
 body {
 	margin: 0 auto;
 	background-image: url("../images/whitey.png");
-	font-family: "Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
+	font-family: "Segoe UI", Arial, Helvetica, FreeSans, "Liberation Sans",
+				"Nimbus Sans L", sans-serif;
 	-moz-user-select: none;
 	overflow: hidden;
 	cursor: default;
@@ -23,7 +24,7 @@ body {
 	margin: 0 auto;
 	color: #FFF;
 	font-size: 14px;
-	background: rgba(0,0,0,0.5);
+	background: rgba(0, 0, 0, 0.5);
 	float: left;
 	position: relative;
 }
@@ -38,8 +39,8 @@ body {
 	word-wrap: break-word;
 	overflow: hidden;
 	position: absolute;
-	
-	-moz-box-sizing: border-box;	
+
+	-moz-box-sizing: border-box;
 }
 
 #nav .path:hover {
@@ -73,32 +74,33 @@ body {
 	height: 100%;
 
 	background: url("../images/settings.png") no-repeat center;
-	
+
 	opacity: 0.5;
 
 	position: absolute;
 	right: 0px;
 
-	-moz-transition-property: margin, opacity, -moz-transform;
-	-moz-transition-duration: 0.5s;
+	transition-property: opacity, transform;
+	transition-duration: 0.5s;
+
 }
 
 #nav .settings:hover {
 	opacity: 1;
 	cursor: pointer;
 
-    -moz-animation-name: rotate;
-    -moz-animation-duration: 2s;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: linear;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 @-moz-keyframes rotate {
     from {
-    	-moz-transform: rotate(0deg);
+    	transform: rotate(0deg);
     }
     to {
-    	-moz-transform: rotate(360deg);
+    	transform: rotate(360deg);
     }
 }
 
@@ -126,16 +128,10 @@ body {
 	float: left;
 }
 
-#marks .box_drag {
-	opacity: 0.75;
-	border-radius: 5px;
-	
-	-moz-transform: scale(0.8);
-}
-
 #marks .box:hover {
 	background:rgba(255,255,255,0.3);
 	cursor:pointer;
+	box-shadow: inset 0px 0px 2px 0px rgba(255,255,255,0.5);
 }
 
 #marks .fav_uri, #marks .fav_query, #marks .fav_folder {
@@ -171,11 +167,16 @@ body {
 	word-wrap: break-word;
 	overflow: hidden;
 }
- 
+
 #marks .separator {
 	width: 100%;
 	height: 3px;
 	margin: 5px 0;
 	float: left;
+}
+
+#marks .drag {
+	box-shadow: 0px 0px 3px 2px #1D9CE0, inset 0px 0px 3px 0px #67E073;
+	transform: scale(0.8);
 }
 

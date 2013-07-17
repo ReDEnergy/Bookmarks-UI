@@ -1,9 +1,11 @@
+'use strict';
+
 // *	Bookmarks rows
 
 var Bookmark = {
 	root	:	document.getElementById('marks'),
-	navpath	:	document.getElementById('nav').children[0], 
-	navback	:	document.getElementById('nav').children[1], 
+	navpath	:	document.getElementById('nav').children[0],
+	navback	:	document.getElementById('nav').children[1],
 	navloc	:	['Bookmarks Toolbar'],
 	fav		:	{
 		0	:	'fav_uri',
@@ -13,8 +15,7 @@ var Bookmark = {
 	}
 };
 
-/**************************************************************************************************************
- **************************************************************************************************************/
+// *****************************************************************************
 
 function Element(Mark, position) {
 	var box		= document.createElement('div');
@@ -30,13 +31,20 @@ function Element(Mark, position) {
 	box.className = 'box';
 	box.setAttribute('id', Mark.id);
 	box.setAttribute('type', Mark.type);
+	box.setAttribute("draggable", "true");
 
 	title.className = 'title';
 	title.textContent = Mark.title;
-	
+
 	box.appendChild(fav);
 	box.appendChild(title);
-	
+
+	if (Mark.position !== -1) {
+		box.addEventListener('dragstart', DragHandlers.start);
+		box.addEventListener('dragend', DragHandlers.end);
+		box.addEventListener('dragenter', DragHandlers.enter);
+	}
+
 	return box;
 }
 
@@ -46,18 +54,18 @@ function Element(Mark, position) {
 
 document.addEventListener('click' , function (e) {
 	var target = e.target;
-	
+
 	// *	Open Addon Settings Page
-	
-	if (target.className == 'settings') { 
-		self.port.emit ("open_homepage");
+
+	if (target.className == 'settings') {
+		self.port.emit ("open_addon_page");
 		return;
 	}
 
 	if (target.className == 'path') {
 		if(e.button > 0)
 			self.port.emit("openAll");
-		return;	
+		return;
 	}
 
 	if (target.className == 'back') {
@@ -67,10 +75,10 @@ document.addEventListener('click' , function (e) {
 			Bookmark.navpath.textContent = Bookmark.navloc[Bookmark.navloc.length-1];
 			self.port.emit("goBack");
 		}
-		
+
 		if (Bookmark.navloc.length == 1)
 			Bookmark.navback.removeAttribute('style');
-		
+
 		return;
 	}
 
@@ -78,10 +86,11 @@ document.addEventListener('click' , function (e) {
 		target = target.parentNode;
 
 	if (target.className == 'box') {
-		type = target.getAttribute('type');
-		id = target.getAttribute('id');
-		
-		if (type == 0) {
+
+		var type = target.hasAttribute('type') ? target.getAttribute('type') : null;
+		var id = target.hasAttribute('id') ? target.getAttribute('id') : null;
+
+		if ((type | 0) === 0) {
 			self.port.emit("openURI", id, e.button);
 		}
 
@@ -95,12 +104,64 @@ document.addEventListener('click' , function (e) {
 
 		return;
 	}
-	
+
 });
 
+var DragHandlers = (function DragHandlers() {
+
+	var DragElement = null;
+	var index = null;
+	var initial_index = null;
+
+	var img = new Image();
+	img.src = '../images/icon16.png';
+
+	function getChildIndex(node) {
+	    var i = 0;
+	    while (node = node.previousElementSibling)
+	        i++;
+	    return i;
+	}
+
+	var start = function start(e) {
+		DragElement = this;
+		DragElement.classList.add('drag');
+		e.dataTransfer.effectAllowed = 'copy';
+		e.dataTransfer.setData('drag', 'drag');
+		e.dataTransfer.setDragImage(img, -10, -10);
+		index = getChildIndex(DragElement);
+		initial_index = index;
+	}
+
+	var end = function end(e) {
+		DragElement.classList.remove('drag');
+		Events.moveItem(initial_index, index);
+	}
+
+	var enter = function enter(e) {
+		if (this === DragElement)
+			return;
+
+		var index_node = getChildIndex(this);
+
+		if (index <= index_node)
+			Bookmark.root.insertBefore(DragElement, this.nextElementSibling);
+		else
+			Bookmark.root.insertBefore(DragElement, this);
+
+		index = index_node;
+	}
+
+	return {
+		start: start,
+		enter: enter,
+		end: end
+	}
+
+})();
 
 var Events = {
-	folderClick : function (target) {
+	folderClick : function folderClick(target) {
 		self.port.emit("getMarksFrom", target.getAttribute('id'));
 		var title = target.children[1].textContent;
 		Bookmark.navloc.push(title);
@@ -108,26 +169,28 @@ var Events = {
 		Bookmark.navback.style.display = 'block';
 	},
 
-	openURI : function (target) {
+	openURI : function openURI(target) {
 		self.port.emit("openURI", target.getAttribute('id'), e.button);
-	}
+	},
 
+	moveItem : function moveItem(item_index, move_index) {
+		self.port.emit("moveItem", item_index, move_index);
+	}
 }
 
-
-// **********************************************************************************
-// *	Addon Communication	
+// *****************************************************************************
+// *	Addon Communication
 
 self.port.on("loadMarks", function (marks) {
-	Bookmark.root.textContent = ''; 
+	Bookmark.root.textContent = '';
 	for (var i in marks) {
 		var elem = Element(marks[i], i);
-		Bookmark.root.appendChild(elem);	
+		Bookmark.root.appendChild(elem);
 	}
 });
 
 self.port.on("panel height", function(value) {
-	Bookmark.root.style.height = value - 80 + 'px';	
+	Bookmark.root.style.height = value - 80 + 'px';
 });
 
 self.port.on("panel image", function(img) {
