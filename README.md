@@ -3,7 +3,7 @@
 	alt="Bookmarks UI Identity" title="Bookmarks UI Identity">
 </div>
 
-### ![logo](./data/images/icon16.png "logo") Development Branch
+### ![logo](./data/images/icon16.png "logo") Release Branch
 
 Interface for interacting with browser bookmarks
 Firefox Addon Page can be found [here](https://addons.mozilla.org/en-US/firefox/addon/bookmarks-ui/)
