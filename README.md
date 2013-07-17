@@ -15,7 +15,7 @@ Developed by [Gabriel Ivanica](https://addons.mozilla.org/en-US/firefox/user/ReD
 #### Version 1.6.2
 
 	Bookmarks are sortable using drag and drop functionality
-	Added aditional button for oppening addon settings page from Add-on Manager
+	Added additional button for opening add-on settings page from Add-on Manager
 
 
 #### Version 1.6.1
