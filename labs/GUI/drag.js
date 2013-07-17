@@ -1,19 +1,24 @@
-var Container = null;
-
 window.onload = function () {
-	document.getElementById("config").children[1].addEventListener('click', enableDragging);
-}; 
+	enableDragging();
+}
 
+var GUI;
+var PH;
 
 function enableDragging() {
 
-	Container = document.getElementById("f3");
+	GUI = document.getElementById("gui");
+	PH = new Placeholder();
 
-	for (var i=0; i<Container.childElementCount; i++) {
-		var box = Container.children[i];
+	for (var i=0; i<30; i++)
+		GUI.appendChild(new Box(i));
+
+
+	for (var i=0; i<GUI.childElementCount; i++) {
+		var box = GUI.children[i];
 
 		box.setAttribute("draggable", "true");
-		
+
 		box.addEventListener('dragstart', DragHandlers.start, false);
 		box.addEventListener('dragend'  , DragHandlers.end  , false);
 
@@ -21,22 +26,57 @@ function enableDragging() {
 		box.addEventListener('dragover' , DragHandlers.over , false);
 		box.addEventListener('dragleave', DragHandlers.leave, false);
 
-		// box.addEventListener('drag'     , DragHandlers.drag , false);
 		box.addEventListener('drop'     , DragHandlers.drop , false);
 	};
 
 };
 
-function newBox (id, offsetX, offsetY) {
+function Box (id) {
 	var box = document.createElement('div');
+	var bookmark = document.createElement('div');
+	var favicon = document.createElement('div');
+	var title = document.createElement('div');
+
 	box.className = 'box';
 	box.setAttribute("id", "box"+id);
 	box.setAttribute("draggable", "true");
 	box.setAttribute('ready', 'true');
-	box.style.left = offsetX + 'px';
-	box.style.top = offsetY + 'px';
+
+	bookmark.className = 'text';
+	favicon.className = 'fav';
+	title.textContent = "Awesome Box " + id;
+
+	bookmark.appendChild(favicon);
+	bookmark.appendChild(title);
+	box.appendChild(bookmark);
+
 	return box;
 }
+
+
+function Placeholder () {
+	var box = document.createElement('div');
+	var bookmark = document.createElement('div');
+	var favicon = document.createElement('div');
+	var title = document.createElement('div');
+
+	box.className = 'box';
+	box.setAttribute("id", "placeholder");
+	bookmark.className = 'text';
+	box.appendChild(bookmark);
+
+	return box;
+}
+
+
+function getChildIndex(node)
+{
+    var i = 1;
+    while (node = node.previousElementSibling)
+        ++i;
+    return i;
+}
+
 
 
 var DragElement;
@@ -45,52 +85,47 @@ var DragHandlers = {
 	start : function(e) {
 		// 	this = start node
 		// console.log('start');
-		this.classList.add('box_drag');
-		e.dataTransfer.effectAllowed = 'copyMove';
-		e.dataTransfer.setData('drag', 'drag');
 		DragElement = this;
+		DragElement.style.boxShadow = '0px 0px 3px 2px #1D9CE0, inset 0px 0px 3px 0px #67E073';
+		// DragElement.style.display = 'none';
+		e.dataTransfer.effectAllowed = 'copy';
+		e.dataTransfer.setData('drag', 'drag');
+		// var x = new Image();
+		// x.src = '../images/fav3.png';
+		// e.dataTransfer.setDragImage(x, -10, -10);
 	},
 
 	end : function(e) {
 		// 	this = destination node
 		// console.log('end');
-		this.classList.remove('box_drag');
+		DragElement.removeAttribute('style');
+		// DragElement.style.removeProperty('display');
+		// GUI.insertBefore(DragElement, PH);
+		// GUI.removeChild(PH);
 	},
 
 	enter : function(e) {
-		// console.log('enter');
-		// 	this = destination node 
-		if (this.getAttribute('ready') == 'true') {
-			if (DragElement != this) {
+		if (this === DragElement)
+			return;
 
-				this.setAttribute('ready', 'false');
-	
-				// Move Animation using CSS3
-				
-				var X = DragElement.style.left;
-				var Y = DragElement.style.top;
-				var ID = DragElement.id;
-				
-				DragElement.style.left = this.style.left;
-				DragElement.style.top = this.style.top;
-				DragElement.id = this.id;
-				
-				this.style.left = X;
-				this.style.top = Y;
-				this.id = ID;
-			}
-		}
+		// this = destination node
+		var index_node = getChildIndex(this);
+		var index_ph = getChildIndex(DragElement);
+
+		if (index_ph <= index_node)
+			GUI.insertBefore(DragElement, this.nextElementSibling);
+		else
+			GUI.insertBefore(DragElement, this);
 	},
-	
+
 	over : function(e) {
-		// 	this = destination node 
+		// 	this = destination node
 		e.preventDefault();
 	},
 
 	leave : function(e) {
 		// 	this = destination node
 		// console.log('leave');
-		this.setAttribute('ready', 'true'); 
 	},
 
 	drag : function(e) {
@@ -99,9 +134,7 @@ var DragHandlers = {
 
 	drop : function(e) {
 		// console.log('drop');
-		// 	this = mouse relese (drop) on the "element"  
-		DragElement.classList.remove('box_drag');
-		this.setAttribute('ready', 'true');
+		// 	this = mouse relese (drop) on the "element"
 	}
 }
 
