@@ -9,6 +9,7 @@
 	"icon64" : "data/images/icon64.png",
 
     "license": "LGPL 3.0", 
+    "version": "1.6.2",
 
     "author": "Gabriel Ivanica",
     
