@@ -16,6 +16,7 @@ Developed by [Gabriel Ivanica](https://addons.mozilla.org/en-US/firefox/user/ReD
 
 	Working XUL overlay demo for reimplementing the UI using XUL
 	Bookmarks are sortable using drag and drop functionality
+	Added aditional button for oppening addon settings page from Add-on Manager
 
 	
 #### Version 1.6.1
