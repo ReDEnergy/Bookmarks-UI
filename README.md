@@ -12,6 +12,12 @@ Developed by [Gabriel Ivanica](https://addons.mozilla.org/en-US/firefox/user/ReD
 
 ## Changelog
 
+#### Version 1.6.2
+
+	Working XUL overlay demo for reimplementing the UI using XUL
+	Bookmarks are sortable using drag and drop functionality
+
+	
 #### Version 1.6.1
 
 	Removed LivMarks until full read capabilities will be implemented
