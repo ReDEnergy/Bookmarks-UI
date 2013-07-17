@@ -1,6 +1,6 @@
 // JavaScript Document
 
-"use strict";
+'use strict';
 
 // *	Store User Settings - Save
 
@@ -179,12 +179,17 @@ MouseActions.prototype = function() {
 	var nr_values = 3;
 	var values = ['New Tab', 'Same Tab', 'Disabled'];
 
+	function update (button) {
+		self.port.emit("mouse button", {value : value, button: button});
+	}
+
 	function getValue (e) {
 		value = parseInt(e.target.getAttribute("value"));
 		if (value >= 0 && value < nr_values) {
-			self.port.emit("mouse button", {value : value, button: this.button});
+			update(this.button);
 			return e.target.textContent;
 		}
+		return null;
 	}
 
 	function appendOptions (dropmenu) {
@@ -220,6 +225,7 @@ var PanelColumns = function () {
 				update();
 				return e.target.textContent;
 			}
+			return null;
 		},
 
 		appendOptions : function (dropmenu) {
@@ -250,6 +256,7 @@ var PanelHeight = function () {
 				update();
 				return e.target.textContent;
 			}
+			return null;
 		},
 
 		appendOptions : function (dropmenu) {
